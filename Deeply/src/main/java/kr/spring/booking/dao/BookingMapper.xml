@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.booking.dao.BookingMapper">
+	
+  	<!-- 전체/검색 목록 -->
+  	<select id="selectEventByArtistId" parameterType="map"
+  	                           resultType="eventVO">
+  		SELECT *
+    	FROM (
+        SELECT a.*, rownum rnum
+        FROM (  
+            SELECT *
+            FROM performance_detail d
+            LEFT OUTER JOIN performance_hall h ON d.hall_num = h.hall_num
+            WHERE d.artist_num = #{user_num}
+            <if test="status != null">
+                AND d.perf_status = #{status}
+            </if>
+            <if test="startDate != null and endDate != null">
+                AND d.perf_date BETWEEN #{startDate} AND #{endDate}
+            </if>
+            ORDER BY d.reg_date DESC NULLS LAST
+        	) a
+    	)
+    	WHERE rnum BETWEEN #{start} AND #{end}
+  	</select>
+  	
+  	<!-- 전체/검색 레코드수 -->
+  	<select id="selectEventRowCount" parameterType="map"
+  	                               resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM performance_detail d LEFT OUTER JOIN performance_hall h
+  		ON d.hall_num = h.hall_num WHERE artist_num=#{user_num}
+  	</select>
+  	<insert id="registerBookingInfo" parameterType="BookingVO">
+  		INSERT INTO booking(
+  			booking_num,
+  			perf_num,
+  			user_num,
+  			booked_seat,
+  			total_price,
+  			booking_date,
+  			seat_num1,
+  			seat_num2,
+  			name,
+  			phone,
+  			name2,
+  			phone2,
+  			deliver_name,
+  			zipcode,
+  			address1,
+  			address2,
+  			request)
+  		VALUES (
+  			#{booking_num},
+  			#{perf_num},
+  			#{user_num},
+  			#{booked_seat},
+  			#{total_price},
+  			sysdate,
+  			#{seat_num1},
+  			#{seat_num2},
+  			#{name},
+  			#{phone},
+  			#{name2},
+  			#{phone2},
+  			#{deliver_name},
+  			#{zipcode},
+  			#{address1},
+  			#{address2},
+  			#{request, jdbcType=VARCHAR})
+  	</insert>
+  	
+  	
+  	
+  	<insert id="registerEvent" parameterType="EventVO">
+  		INSERT INTO performance_detail(
+  			perf_num,
+  			hall_num,
+  			artist_num,
+  			perf_date,
+  			perf_time,
+  			perf_status,
+  			perf_title,
+  			perf_desc,
+  			ticket_price,
+  			book_date,
+  			end_date,
+  			booking_deadline,
+  			mem_date,
+  			end_time,
+  			perf_photo,
+  			reg_date
+  		) 
+  		VALUES(
+  			perf_detail_seq.nextval,
+  			#{hall_num},
+  			#{artist_num},
+  			#{perf_date},
+  			#{perf_time},
+  			'before',
+  			#{perf_title},
+  			#{perf_desc},
+  			#{ticket_price},
+  			#{book_date},
+  			#{end_date},
+  			#{booking_deadline},
+  			#{mem_date},
+  			#{end_time},
+  			#{perf_photo},
+  			sysdate
+  		)
+  	</insert>
+  	<update id="updatePerformanceStatus">
+    	<![CDATA[ 
+    	UPDATE performance_detail
+		SET perf_status = CASE
+    		WHEN TO_DATE(mem_date, 'YYYY-MM-DD') = TRUNC(SYSDATE) THEN 'membership'
+    		WHEN TO_DATE(book_date, 'YYYY-MM-DD') > TRUNC(SYSDATE) AND TO_DATE(mem_date, 'YYYY-MM-DD') != TRUNC(SYSDATE) THEN 'before'
+    		WHEN TRUNC(SYSDATE) BETWEEN TO_DATE(book_date, 'YYYY-MM-DD') AND TO_DATE(booking_deadline, 'YYYY-MM-DD') THEN 'ongoing'
+    		WHEN TO_DATE(booking_deadline, 'YYYY-MM-DD') < TRUNC(SYSDATE) THEN 'over'
+		END
+   		]]>
+	</update>
+	
+	<select id="checkIfGroupMembership" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+			FROM fan f
+			JOIN auser_detail d ON f.fan_artist = d.user_num
+			WHERE f.user_num = #{user_num}
+			AND d.group_name = #{group_name}
+			<![CDATA[
+			AND TO_DATE(fan_start, 'YY/MM/DD') <= TRUNC(SYSDATE) - 20
+			]]>
+	</select>
+	
+	<!-- 사용자 예매 정보 -->
+	<!-- 전체/검색 목록 -->
+  	<select id="selectBookingByUserNum" parameterType="map"
+  	                           resultType="bookingVO">
+  		SELECT *
+    	FROM (
+        SELECT a.*, rownum rnum
+        FROM (  
+            SELECT *
+            FROM booking b
+            LEFT OUTER JOIN performance_detail d ON b.perf_num = d.perf_num
+            WHERE b.user_num = #{user_num}
+            ORDER BY b.booking_date DESC NULLS LAST
+        	) a
+    	)
+    	WHERE rnum BETWEEN #{start} AND #{end}
+  	</select>
+  	
+  	<!-- 전체/검색 레코드수 -->
+  	<select id="countBookingByUserNum" parameterType="long"
+  	                               resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM booking b WHERE user_num=#{user_num}
+  	</select>
+	
+</mapper>

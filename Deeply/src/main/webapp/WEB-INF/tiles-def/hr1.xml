@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    
+    <!--채팅방 만들기 -->
+    <!--채팅방 -->
+    <definition name="chatRoom" extends="main">
+    	<put-attribute name="title" value="채팅방"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/chat/chatRoom.jsp"/>
+
+
+    </definition>
+       <!--채팅방 들어가기 -->
+    <definition name="chattingEnter" extends="main">
+    	<put-attribute name="title" value="채팅방 입장/만들기"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/chat/chattingEnter.jsp"/>
+
+    </definition>
+    
+     <!-- 알람 --> 
+    <definition name="alarm_nav" extends="main">
+    	<put-attribute name="title" value="알람 네비게시연"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/alarm/alarm_nav.jsp"/>
+
+    </definition>
+    
+    
+</tiles-definitions>
+
+
+
+
+
+
+
+
+

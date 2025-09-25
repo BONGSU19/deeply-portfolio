@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.spring.video.dao.VideoMapper">
+	<insert id="insertVideo"
+        parameterType="kr.spring.video.vo.VideoVO">
+    INSERT INTO video (
+        video_id,
+        artist_id,
+        group_num, <!-- group_num 추가 -->
+        title,
+        description,
+        is_exclusive,
+        views,
+        likes,
+        comments_count,
+        category_id,
+        media_url
+    ) VALUES (
+        video_seq.NEXTVAL,
+        #{artistId, jdbcType=NUMERIC},
+        #{groupNum, jdbcType=NUMERIC}, <!-- group_num 추가 -->
+        #{title},
+        #{description},
+        #{isExclusive, jdbcType=NUMERIC},
+        #{views, jdbcType=NUMERIC},
+        #{likes, jdbcType=NUMERIC},
+        #{commentsCount, jdbcType=NUMERIC},
+        #{categoryId, jdbcType=NUMERIC},
+        #{mediaUrl, jdbcType=VARCHAR}
+    )
+</insert>
+	<select id="selectList" parameterType="map"
+		resultType="kr.spring.video.vo.VideoVO">
+		SELECT
+		video_id AS videoId,
+		artist_id AS artistId,
+		title,
+		description,
+		is_exclusive AS isExclusive,
+		media_url AS mediaUrl,
+		created_at AS createdAt,
+		views,
+		likes,
+		comments_count AS commentsCount,
+		category_id AS categoryId
+		FROM video
+		ORDER BY created_at DESC
+	</select>
+	<select id="selectVideosByCategoryAndGroup" resultType="kr.spring.video.vo.VideoVO">
+        SELECT
+            video_id       AS videoId,
+            artist_id      AS artistId,
+            title,
+            description,
+            is_exclusive   AS isExclusive,
+            media_url      AS mediaUrl,    <!-- media_url alias 매핑 -->
+            created_at     AS createdAt,
+            views,
+            likes,
+            comments_count AS commentsCount,
+            category_id    AS categoryId,
+            group_num      AS groupNum
+        FROM video
+        WHERE category_id = #{categoryId}
+          AND group_num = #{groupNum}
+          AND is_exclusive = 0
+        ORDER BY video_id
+    </select>
+    <select id="selectMembershipVideosByGroup" parameterType="long" resultType="kr.spring.video.vo.VideoVO">
+        SELECT
+            video_id AS videoId,
+            artist_id AS artistId,
+            title,
+            description,
+            is_exclusive AS isExclusive,
+            media_url AS mediaUrl,    <!-- media_url alias 매핑 -->
+            created_at AS createdAt,
+            views,
+            likes,
+            comments_count AS commentsCount,
+            category_id AS categoryId,
+            group_num AS groupNum
+        FROM video
+        WHERE group_num = #{groupNum}
+          AND is_exclusive = 1
+        ORDER BY created_at DESC
+    </select>
+    <!-- 특정 그룹에 속한 영상 목록 조회 -->
+    <select id="selectListByGroup" parameterType="map" resultType="kr.spring.video.vo.VideoVO">
+        SELECT
+            video_id AS videoId,
+            artist_id AS artistId,
+            title,
+            description,
+            is_exclusive AS isExclusive,
+            media_url AS mediaUrl,
+            created_at AS createdAt,
+            views,
+            likes,
+            comments_count AS commentsCount,
+            category_id AS categoryId,
+            group_num AS groupNum
+        FROM
+            video
+        WHERE
+            group_num = #{groupNum}
+            AND is_exclusive = 0
+        ORDER BY
+            created_at DESC
+    </select>
+</mapper>

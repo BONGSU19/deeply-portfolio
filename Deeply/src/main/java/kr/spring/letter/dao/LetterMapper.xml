@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.letter.dao.LetterMapper">
+	<select id="countLetterByUser" parameterType="map"
+  	                               resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM letter WHERE artist_num=#{artist_num} AND user_num=#{user_num}
+  	</select>
+  	<select id="selectLetterByUser" parameterType="map"
+  	                               resultType="letterVO">
+  		SELECT
+  		  *
+  		FROM (SELECT
+  		        a.*,
+  		        rownum rnum
+  		      FROM (SELECT 
+  		              *
+  		            FROM letter l
+  		            ORDER BY l.post_date DESC NULLS LAST)a)
+  		WHERE artist_num=#{artist_num} AND user_num=#{user_num}            
+  		<![CDATA[
+  		AND rnum >= #{start} AND rnum <= #{end}
+  		]]>
+  	</select>
+  	<insert id="postLetter" parameterType="LetterVO">
+  		INSERT INTO letter(
+  			letter_num,
+  			user_num,
+  			artist_num,
+  			letter_title,
+  			letter_content,
+  			post_date,
+  			replied,
+  			letter_photo)
+  		VALUES(
+  			letter_seq.nextval,
+  			#{user_num},
+  			#{artist_num},
+  			#{letter_title},
+  			#{letter_content},
+  			sysdate,
+  			#{replied},
+  			#{letter_photo, jdbcType=VARCHAR})
+  	</insert>
+  	
+  	<select id="countReply" parameterType="map">
+  		SELECT COUNT(*) FROM reply WHERE artist_num=#{artist_num} AND user_num=#{user_num}
+  	</select>
+  	<select id="showReplyForUser" parameterType="map">
+  		SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM reply r ORDER BY r.post_date DESC NULLS LAST)a )
+  		WHERE artist_num=#{artist_num}
+  		<![CDATA[
+  		AND rnum >= #{start} AND rnum <= #{end}
+  		]]>
+  	</select>
+  	
+  	<select id="countLetterForArtist" parameterType="map"
+  	                               resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM letter WHERE artist_num=#{artist_num}
+  	</select>
+  	<select id="selectLetterForArtist" parameterType="map"
+  	                               resultType="letterVO">
+  		SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT l.*, d.nick_name
+        FROM letter l JOIN duser d ON l.user_num = d.user_num
+        ORDER BY l.post_date DESC NULLS LAST) a) 
+		WHERE
+    	artist_num = #{artist_num}
+    	<![CDATA[
+    	AND rnum >= #{start} AND rnum <= #{end}
+    	]]>
+  	</select>
+  	
+  	<select id="countReplyForArtist" parameterType="long" resultType="integer">
+  		SELECT COUNT(*) FROM reply WHERE artist_num=#{artist_num}
+  	</select>
+  	<select id="showReplyForArtist" parameterType="map" resultType="replyVO">
+  		SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT l.*, d.nick_name
+        FROM reply l JOIN duser d ON l.user_num = d.user_num
+        ORDER BY l.post_date DESC NULLS LAST) a) 
+		WHERE
+    	artist_num = #{artist_num}
+    	<![CDATA[
+    	AND rnum >= #{start} AND rnum <= #{end}
+    	]]>
+  	</select>
+  	
+  	<insert id="postReply" parameterType="ReplyVO">
+  		INSERT INTO reply(
+  			reply_num,
+  			user_num,
+  			letter_num,
+  			artist_num,
+  			letter_title,
+  			letter_content,
+  			post_date
+  			<if test="img != null">
+            , img
+        	</if>
+        	<if test="file_name != null">
+            , file_name
+       	 	</if>
+        	)
+  		VALUES(
+  			reply_seq.nextval,
+  			#{user_num},
+  			#{letter_num},
+  			#{artist_num},
+  			#{letter_title},
+  			#{letter_content},
+  			sysdate
+  			<if test="img != null">
+            , #{img}
+        	</if>
+        	<if test="file_name != null">
+            , #{file_name}
+        	</if>
+  			)
+  	</insert>
+  	
+</mapper>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="artistList" extends="main">
+    	<put-attribute name="title" value="아티스트 목록"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/artist/artistCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/artist/artistList.jsp"/>
+    </definition>
+    <definition name="artistDetail" extends="main">
+    	<put-attribute name="title" value="아티스트 상세"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/artist/artistCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/artist/artistDetail.jsp"/>
+    </definition>
+    <definition name="artistModify" extends="main">
+    	<put-attribute name="title" value="아티스트 수정"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/artist/artistCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/artist/artistModify.jsp"/>
+    </definition>
+    <definition name="bookingList" extends="main">
+    	<put-attribute name="title" value="이벤트 예약 목록"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/booking/bookingCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/booking/bookingList.jsp"/>
+    </definition>
+    <definition name="bookingForm" extends="main">
+    	<put-attribute name="title" value="이벤트 예약 작성"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/booking/bookingCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/booking/bookingForm.jsp"/>
+    </definition>
+    <definition name="bookingRegister" extends="main">
+    	<put-attribute name="title" value="이벤트 등록"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/booking/bookingCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/booking/bookingRegister.jsp"/>
+    </definition>
+    <definition name="bookingArtistList" extends="main">
+    	<put-attribute name="title" value="이벤트 관리"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/booking/bookingCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/booking/bookingArtistList.jsp"/>
+    </definition>
+    <definition name="userBookingList" extends="main">
+    	<put-attribute name="title" value="사용자 예매 관리"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/booking/bookingCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/booking/userBookingList.jsp"/>
+    </definition>
+    <definition name="letterList" extends="main">
+    	<put-attribute name="title" value="편지 목록"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/letter/letterCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/letter/letterList.jsp"/>
+    </definition>
+     <definition name="letterWrite" extends="main">
+    	<put-attribute name="title" value="편지 작성"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/letter/letterCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/letter/letterWrite.jsp"/>
+    </definition>
+    <definition name="letterDetail" extends="main">
+    	<put-attribute name="title" value="편지 상세"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/letter/letterCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/letter/letterDetail.jsp"/>
+    </definition>
+    <definition name="letterReply" extends="main">
+    	<put-attribute name="title" value="편지 답장"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/letter/letterCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/letter/letterReply.jsp"/>
+    </definition>
+    <definition name="artist_letterList" extends="main">
+    	<put-attribute name="title" value="아티스트 편지 목록"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/letter/letterCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/letter/artist_letterList.jsp"/>
+    </definition>
+    <definition name="artist_replyList" extends="main">
+    	<put-attribute name="title" value="아티스트 답장 목록"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/letter/letterCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/letter/artist_replyList.jsp"/>
+    </definition>
+    <definition name="artist_writeReply" extends="main">
+    	<put-attribute name="title" value="아티스트 답장 작성"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/letter/letterCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/letter/artist_writeReply.jsp"/>
+    </definition>
+    <definition name="replyDetail" extends="main">
+    	<put-attribute name="title" value="아티스트 답장 상세"/>
+    	<put-attribute name="css"
+    	  value="/WEB-INF/views/letter/letterCSS.jsp"/>
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/letter/replyDetail.jsp"/>
+    </definition>
+</tiles-definitions>
+
+
+
+
+
+
+
+
+

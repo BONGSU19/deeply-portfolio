@@ -1,0 +1,646 @@
+@charset "UTF-8";
+/*로그인 부분 시작*/
+.login{
+	width:612px;
+	height:505px;
+	text-align:center;
+	margin:0 auto;
+	margin-top:70px;
+}
+.login form{
+	border:none;
+}
+
+.login .logo{
+	margin-bottom:61px;
+}
+.login form input{
+	width:561px;
+	height:61px;
+	margin-bottom:20px;
+	border-radius:5px;
+	border:1px solid #B0ADAD;
+	font-size:24px;
+	  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.18);
+}
+
+.line-with-text {
+  display: flex; /* 수평 정렬 */
+  align-items: center; /* 세로 정렬 */
+  margin: 20px 0; /* 위아래 여백 */
+}
+
+.line-with-text::before,
+.line-with-text::after {
+  content: "";
+  flex: 1; /* 선의 길이를 늘려줌 */
+  height: 1px; /* 선 두께 */
+  background: #ccc; /* 선 색상 */
+}
+
+.line-with-text span {
+  margin: 0 10px; /* 텍스트 양옆 여백 */
+  color: #666; /* 텍스트 색상 */
+  font-weight: bold; /* 텍스트 굵기 */
+  font-size:15px;
+}
+
+.line-with-text::after {
+  content: ""; /* 끝부분 선 */
+}
+.login-button{
+	margin:0 auto;
+	border-spacing: 8px;
+	
+}
+.login-button td{
+	width:278px;
+	height:56px;
+	border-radius:5px;
+	border:1px solid #B0ADAD;
+
+}
+
+
+.login button{
+	width:572px;
+	height:61px;
+	background-color:black;
+		border-radius:5px;
+		color:white;
+		margin-top:10px;
+			  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.18);
+}
+
+  .inline-img {
+    display: inline-block; /* 이미지를 인라인 블록 요소로 설정 */
+    vertical-align: middle; /* 세로 중앙 정렬 */
+    width:30px;
+
+  }
+
+  .inline-text {
+    display: inline-block; /* 텍스트를 인라인 블록 요소로 설정 */
+    vertical-align: middle; /* 세로 중앙 정렬 */
+  }
+/*회원가입 부분 시작*/
+.register-wrap {
+ display: flex;             /* Flex 컨테이너 */
+    flex-wrap: nowrap;         /* 박스들이 줄 바꿈 없이 한 줄에 나열되도록 설정 */
+    justify-content: flex-start; /* 박스를 왼쪽에 정렬 */
+    align-items: center;  
+    margin-bottom:50px;
+        /* 박스를 세로 중앙에 정렬 */
+}
+.register-image{
+width:1000px;
+height:563px;
+background-color:gray;
+float:left;
+flex-shrink: 0; 
+}
+.register-content{
+
+width:400px;
+height:563px;
+
+float:left;
+flex-shrink: 0; 
+ margin-left:100px;
+}
+.register-content .logo-img{
+	width:178px;
+	height:47px;
+	margin-left:7px;
+}
+.register-content h1{
+font-weight:bold; 
+font-size:24px; 
+margin-top:0px; 
+margin-left:7px;
+margin-bottom:0px;
+}
+.register-content h2{
+
+font-size:16px; 
+margin-top:0px; 
+margin-left:7px;
+}
+.register-wrap input{
+	width:280px;
+	height:30px;
+	margin-bottom:7px;
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.18);
+	border-radius:5px;
+	border:1px solid #B0ADAD;
+}
+.register-wrap .Authentication{
+	width:200px;
+	height:30px;
+}
+.login .Authentication{
+	width:420px;
+	height:64px;
+	float:left;
+	margin-left:25px;
+}
+.login .inz{
+	float:left;
+	height:64px;
+	width:130px;
+	margin-left:10px;
+	line-height:64px;
+	font-size:20px;
+	background-color:#B0ADAD;
+}
+.register-wrap .Authentication2{
+	width:149px;
+}
+.register-form .default-btn{
+	width:75px;
+	font-size:11px;
+}
+.register-form .default-btn2{
+	width:127px;
+	font-size:11px;
+}
+.line-with-text2 {
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    width: 300px; /* 전체 컨테이너 너비 */
+    margin-top: 20px ; /* 가운데 정렬 */
+	margin-bottom: 20px ;
+}
+
+.line-with-text2::before,
+.line-with-text2::after {
+    content: '';
+    flex: 1; /* 남은 공간을 차지하여 선을 양쪽에 균등 분배 */
+    height: 1px; /* 선의 두께 */
+    background: #000; /* 선 색상 */
+    margin: 0 10px; /* 선과 텍스트 사이 간격 */
+}
+
+.line-with-text2 span {
+    font-size: 14px; /* 텍스트 크기 */
+    color: #333; /* 텍스트 색상 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.inline-img2{
+	width:17px;
+	height:17px;
+}
+.inline-text2{
+	font-size:10px;
+}
+.register-api td{
+	width:140px;
+	height:30px;
+	border-radius:5px;
+	border:1px solid #B0ADAD;
+			  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.18);
+}
+  .inline-img2 {
+    display: inline-block; /* 이미지를 인라인 블록 요소로 설정 */
+    vertical-align: middle; /* 세로 중앙 정렬 */
+
+  }
+
+  .inline-text2 {
+    display: inline-block; /* 텍스트를 인라인 블록 요소로 설정 */
+    vertical-align: middle; /* 세로 중앙 정렬 */
+  }
+  .register-submit{
+  width:290px;
+  height:30px;
+	border-radius:5px;
+	border:1px solid #B0ADAD;
+			  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.18);
+			  text-align:center;
+			  line-height:30px;
+  }
+  .inz{
+  width:75px;
+  height:30px;
+	font-size:11px;
+	border-radius:5px;
+	border:1px solid #B0ADAD;
+			  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.18);
+			  float:right;
+			  text-align:center;
+			  line-height:30px;}
+			  
+			  #errorMessage {
+    color: red;
+    display: block;  /* 숨겨져 있지 않도록 display 속성 확인 */
+}
+.artist_register{
+	text-decoration:none;
+	color:black;
+}
+			  
+/*회원가입 부분 끝*/
+
+/*관리자 부분 시작*/
+.admin-one{
+	width:255px;
+	height:1105px;
+	background-color:#000000;
+	opacity:75%;
+	padding-top:10px;
+		float:left;
+		flex-shrink: 0; 
+}
+.admin-one ul li{
+		margin-top:40px;
+}
+.admin-one ul li a{
+	color:white;
+	font-size:20px;
+	text-decoration:none;
+
+}
+
+.admin-two{
+	float:left;
+	flex-shrink: 0; 
+}
+/*관리자 부분 끝*/
+/*마이페이지 시작*/
+
+.mypage-1{
+
+	width:673px;
+	height:194px;
+	border-radius:19px;
+	  background-color: rgba(0, 162, 207, 0.08);
+	  margin:0 auto;
+}
+.my-photo2{
+	width:190px;
+	height:190px;
+	border-radius:100%;
+	background-color:black;
+	margin:0 auto;
+}
+.artist_register{
+	margin-top:20px;
+	width:290px;
+	height:30px;
+	margin-bottom:7px;
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.18);
+	border-radius:5px;
+	border:1px solid #B0ADAD;
+	text-align:center;
+	line-height:30px;
+}
+.artist_register a{
+	color:black;
+	text-decoration:none;
+
+}
+
+/*마이페이지 끝*/
+/*footer 시작*/
+footer{
+	width:85%;
+	height:219px;
+	margin:0 auto;
+}
+footer .link{
+		width:150px;
+		display:inline-block;
+
+}
+footer a{
+	color:white;
+	text-decoration:none;
+}
+footer .ft-1{
+	float:left;
+}
+footer .ft-2{
+	float:right;
+}
+footer .line{
+	width:100%;
+	height:2px;
+	background-color:white;
+	margin-top:40px;
+}
+footer .footer-img{
+	text-align:right;
+}
+/*footer 끝*/
+
+/*결제창 시작*/
+.payment-1{
+	width:600px;
+	height:700px;
+	margin:0 auto;
+	border:1px;
+}
+.payment-1 h5{
+	width:350px;
+}
+.payment-2{
+	width:600px;
+	margin:0 auto;
+}
+.submit-1{
+	width:400px; height:50px; background-color:black; color:white;
+	border-radius:9px;
+	line-height:50px;
+	text-align:center;
+	font-size:15px;
+	margin:0 auto;
+}
+/*결제창 끝*/
+.userBal{
+	width:800px;
+	margin:0 auto;
+}
+.userBal button{
+	width:800px;
+	height:50px;
+	background-color:white;
+margin-bottom:30px;
+font-size:16px;
+}
+.myUserBal{
+	text-align:center;
+}
+/*예치금 충전 시작*/
+.userBalForm{
+	margin:0 auto;
+	width:800px;
+}
+/*예치금 충전 끝*/
+/*메인 시작*/
+.carousel-inner {
+    background-color: black; 
+  }
+
+  /* Carousel 이미지 스타일 */
+  .carousel-inner .carousel-item img {
+    width: 100%; 
+    height: 38vw; 
+    object-fit: cover; 
+    box-shadow: 0 0 100px 100px rgba(0, 0, 0, 1); 
+    overflow: hidden;
+  }
+
+  /* Carousel 버튼 조정 */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: invert(1); /* 아이콘 색상을 흰색으로 변경 */
+  }
+
+.key-box{
+	height:auto;
+	background-color:black;
+	padding:10% 20%;
+}
+.key-box-1{
+	color:white;
+	margin:0 auto;
+	font-size: clamp(50px, 2vw, 80px);
+	
+}
+.key-box-2{
+	color:white;
+	margin:0 auto;
+	
+}
+.bi-check-square{
+	font-style: normal;
+}
+
+.check-square-text{
+	font-size: clamp(10px, 2vw, 16px);
+	color:#0369A1;
+	text-decoration: none;
+}
+.key-box2{
+	height:auto;
+	padding:15% 15% 5% 15%;
+}
+.key-box2-1{
+	width:80vw;
+	margin:0 auto;
+	font-size: clamp(50px, 2vw, 70px);
+	margin-bottom:5vh;
+}
+.key-box2-1-1{
+	width:80vw;
+	margin:0 auto;
+	font-size: clamp(25px, 1.2vw,350px);
+	color:#0369A1;
+}
+
+
+.key-box2-2 {
+    display: flex; 
+    justify-content: flex-end;
+    margin-top:5%;
+	gap:1rem;
+	
+}
+
+.key-box2-2 i {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.key-box2-2-1 {
+    margin: 0 auto;
+    display: flex; 
+    justify-content: flex-end;
+    font-size: clamp(3px, 1.2vw, 10px);
+}
+.key-box2-2-boot{
+	display: flex; 
+    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.boot2{
+	font-size: clamp(8px, 1.2vw, 14px);
+}
+.key-box2-2-text {
+    font-size: clamp(12px, 1.2vw, 16px);
+}
+
+.choice{
+	display: flex; 
+    flex-direction: column;
+    margin-bottom:10%;
+}
+.name{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	padding:5% 0; 
+	
+}
+.choice4{
+	width:30vw;
+	height:30vw;
+}
+.choice-text{
+	font-size: clamp(20px, 1.2vw, 40px);
+}
+.c-content1{
+	padding:0 2.5%; 
+}
+.c-content2{
+	padding:0 4%; 
+}
+.c-content{
+	padding:0 6%; 
+}
+
+.shop{
+	background-color:black;
+	height:auto;
+}
+.shop-1{
+	font-size: clamp(60px, 1.2vw, 70px);
+	color:white;
+	padding:3% 0 0 15%;
+}
+.shop-2{
+	font-size: clamp(40px, 1.2vw, 60px);
+	color:#0369A1;
+	padding:0 0 0 15%;
+}
+.shop-3{
+	font-size: clamp(60px, 1.2vw, 70px);
+	padding:3% 0 0 15%;
+}
+.main-items{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	padding:0 0 4% 0;
+}
+.custom-hr2{
+	margin-left:13%;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+    border: none;
+    height: 3px;
+    background: white; 
+    width: 73%;
+    box-shadow: 0 1vw 1.5vw rgba(0, 0, 0, 0.1);
+    padding:0 0 0 8%;
+}
+.empty-div{
+	height:5vw;
+	width:100%;
+}
+.custom-hr3{
+    border: none;
+    height: 1px;
+    background: rgb(216, 216, 216); 
+    position: relative;
+    width: 100%;
+    box-shadow: 0 1vw 1.5vw rgba(0, 0, 0, 0.1);
+}
+.item-cards{
+	object-fit: cover;
+    width: 15%; 
+    height: 21vw;
+    padding: 0.5rem; 
+    margin: 0.5%;
+    background-color: #fff;
+    border-radius: 1vw; 
+    box-shadow: 0 1vw 1.5vw rgba(0, 0, 0, 0.1); 
+    color:black;
+    display: flex;
+    flex-direction: column; 
+}
+.value-list{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	gap:2%;
+}
+.item-img{
+	width: 100%;
+  	height: auto;
+  	object-fit: cover;
+  	aspect-ratio: 1 / 1;
+  	border-radius: 0.5vw;
+}
+.list-text{
+	font-size: clamp(12px, 1vw, 18px);
+	 line-height: 1.1; 
+}
+
+.list-price{
+	font-size: clamp(12px, 1vw, 18px);
+	color: #0369A1;
+	position: relative;
+	top:1.5%;
+}
+.arrow{
+	font-size: clamp(18px, 1vw, 24px);
+	color:white;
+	text-decoration: none;
+	padding: 0 0 0 78%;
+}
+.artist{
+	padding:2rem 10rem 8rem 15rem; 
+	height:auto;
+	display:flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: flex-start;
+	
+}
+.alist-img{
+  	object-fit: cover;
+  	aspect-ratio: 1 / 1;
+  	border-radius: 0.5vw;
+  	width: 100%; 
+    height: 18vw;
+   
+}
+.item-cards2{
+	width: 15%; 
+    height: 21vw;
+	object-fit: cover;
+    flex: 0 0 calc(25% - 2rem);
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 1vw; 
+    box-shadow: 0 1vw 1.5vw rgba(0, 0, 0, 0.1);
+}
+span.artist-text{
+	all: unset; 
+    text-decoration: none !important;
+	font-size: clamp(12px, 1vw, 18px);
+	color: #0369A1;
+	display:flex;
+	align-items:center;
+	margin-top:0.5rem;
+	justify-content:center;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Pretendard-Regular', sans-serif;
+}
+/*메인 끝*/

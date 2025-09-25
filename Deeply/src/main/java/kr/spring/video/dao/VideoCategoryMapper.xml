@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.spring.video.dao.VideoCategoryMapper">
+	<select id="selectCategoriesByGroupNum" parameterType="long" resultType="kr.spring.video.vo.VideoCategoryVO">
+        SELECT vc.*
+        FROM video_categories vc
+        JOIN auser_detail ad ON vc.user_num = ad.user_num
+        JOIN agroup ag ON ad.group_name = ag.group_name
+        WHERE ag.group_num = #{groupNum}
+        ORDER BY vc.category_id
+    </select>
+</mapper>

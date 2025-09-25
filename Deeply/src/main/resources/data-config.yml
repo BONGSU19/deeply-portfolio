@@ -1,0 +1,8 @@
+dataconfig:
+  rememberme-key: hayden
+  db-url: jdbc:oracle:thin:@211.63.89.70:1521:xe
+  db-username: fteam2
+  db-password: f1234
+  openai-secret-key: 
+  naver-client-id: 
+  naver-client-secret:

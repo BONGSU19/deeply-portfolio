@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.spring.contact.dao.ContactMapper">
+
+    <resultMap id="ContactResultMap" type="kr.spring.contact.vo.ContactVO">
+        <id property="inquiryId" column="INQUIRY_ID" />
+        <result property="userNum" column="user_num" />
+        <result property="title" column="TITLE" />
+        <result property="content" column="CONTENT" />
+        <result property="status" column="STATUS" />
+        <result property="createdAt" column="CREATED_AT" />
+        <result property="updatedAt" column="UPDATED_AT" />
+        <result property="answerContent" column="ANSWER_CONTENT" />
+        <result property="answeredAt" column="ANSWERED_AT" />
+        <result property="fileName" column="file_name" />
+    </resultMap>
+
+    <insert id="insertContact" parameterType="kr.spring.contact.vo.ContactVO">
+        INSERT INTO INQUIRIES (
+            INQUIRY_ID,
+            user_num,
+            TITLE,
+            CONTENT,
+            STATUS,
+            file_name
+        ) VALUES (
+            INQUIRIES_SEQ.NEXTVAL,
+            #{userNum},
+            #{title},
+            #{content},
+            #{status},
+            #{fileName}
+        )
+    </insert>
+
+    <select id="selectAllContacts" resultMap="ContactResultMap">
+        SELECT * FROM INQUIRIES ORDER BY CREATED_AT DESC
+    </select>
+
+    <select id="selectContactById" parameterType="int" resultMap="ContactResultMap">
+        SELECT * FROM INQUIRIES WHERE INQUIRY_ID = #{inquiryId}
+    </select>
+
+    <update id="updateContactStatus" parameterType="kr.spring.contact.vo.ContactVO">
+        UPDATE INQUIRIES
+        SET STATUS = #{status},
+            UPDATED_AT = CURRENT_TIMESTAMP
+        WHERE INQUIRY_ID = #{inquiryId}
+    </update>
+
+    <update id="updateAdminResponse" parameterType="kr.spring.contact.vo.ContactVO">
+        UPDATE INQUIRIES
+        SET ANSWER_CONTENT = #{answerContent},
+            ANSWERED_AT = #{answeredAt},
+            STATUS = 1, -- 답변완료
+            UPDATED_AT = CURRENT_TIMESTAMP
+        WHERE INQUIRY_ID = #{inquiryId}
+    </update>
+
+    <delete id="deleteContact" parameterType="int">
+        DELETE FROM INQUIRIES WHERE INQUIRY_ID = #{inquiryId}
+    </delete>
+
+    <select id="searchContacts" parameterType="kr.spring.contact.vo.ContactVO" resultMap="ContactResultMap">
+        SELECT * FROM INQUIRIES
+        WHERE (:category IS NULL OR CATEGORY = #{title}) -- 카테고리 필터
+          AND (:keyword IS NULL OR TITLE LIKE '%' || #{title} || '%' OR CONTENT LIKE '%' || #{content} || '%') -- 키워드 필터
+        ORDER BY CREATED_AT DESC
+    </select>
+</mapper>

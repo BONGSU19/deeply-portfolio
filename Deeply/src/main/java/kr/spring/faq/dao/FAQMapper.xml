@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.spring.faq.dao.FAQMapper">
+
+    <!-- FAQ 관련 SQL -->
+    <select id="selectAllFAQs" resultType="kr.spring.faq.vo.FAQVO">
+        SELECT
+            faq_id AS faqId,
+            category_id AS categoryId,
+            question,
+            answer,
+            created_at AS createdAt
+        FROM
+            FAQ
+        ORDER BY
+            created_at DESC
+    </select>
+
+    <select id="selectFAQById" parameterType="int" resultType="kr.spring.faq.vo.FAQVO">
+        SELECT
+            faq_id AS faqId,
+            category_id AS categoryId,
+            question,
+            answer,
+            created_at AS createdAt
+        FROM
+            FAQ
+        WHERE
+            faq_id = #{faqId}
+    </select>
+
+    <!-- 시퀀스를 사용하여 FAQ 추가 (useGeneratedKeys 및 keyProperty 제거) -->
+    <insert id="insertFAQ" parameterType="kr.spring.faq.vo.FAQVO">
+        INSERT INTO FAQ (faq_id, category_id, question, answer, created_at)
+        VALUES (faq_seq.NEXTVAL, #{categoryId}, #{question}, #{answer}, CURRENT_TIMESTAMP)
+    </insert>
+
+    <update id="updateFAQ" parameterType="kr.spring.faq.vo.FAQVO">
+        UPDATE FAQ
+        SET
+            category_id = #{categoryId},
+            question = #{question},
+            answer = #{answer}
+        WHERE
+            faq_id = #{faqId}
+    </update>
+
+    <delete id="deleteFAQ" parameterType="int">
+        DELETE FROM FAQ WHERE faq_id = #{faqId}
+    </delete>
+
+    <!-- FAQ Category 관련 SQL -->
+    <select id="selectAllCategories" resultType="kr.spring.faq.vo.FAQCategoryVO">
+        SELECT
+            category_id AS categoryId,
+            category_name AS categoryName,
+            description
+        FROM
+            FAQ_CATEGORY
+        ORDER BY
+            category_id
+    </select>
+
+    <select id="selectCategoryById" parameterType="int" resultType="kr.spring.faq.vo.FAQCategoryVO">
+        SELECT
+            category_id AS categoryId,
+            category_name AS categoryName,
+            description
+        FROM
+            FAQ_CATEGORY
+        WHERE
+            category_id = #{categoryId}
+    </select>
+
+    <!-- 시퀀스를 사용하여 카테고리 추가 (useGeneratedKeys 및 keyProperty 제거) -->
+    <insert id="insertCategory" parameterType="kr.spring.faq.vo.FAQCategoryVO">
+        INSERT INTO FAQ_CATEGORY (category_id, category_name, description)
+        VALUES (faq_category_seq.NEXTVAL, #{categoryName}, #{description})
+    </insert>
+
+    <update id="updateCategory" parameterType="kr.spring.faq.vo.FAQCategoryVO">
+        UPDATE FAQ_CATEGORY
+        SET
+            category_name = #{categoryName},
+            description = #{description}
+        WHERE
+            category_id = #{categoryId}
+    </update>
+
+    <delete id="deleteCategory" parameterType="int">
+        DELETE FROM FAQ_CATEGORY WHERE category_id = #{categoryId}
+    </delete>
+
+</mapper>

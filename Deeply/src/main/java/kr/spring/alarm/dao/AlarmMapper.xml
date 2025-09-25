@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace ="kr.spring.alarm.dao.AlarmMapper">
+<!--답장 알람 지우기 -->
+
+
+<!--답장 알람 넣기 -->
+	<insert id ="insertReplyAlarm" parameterType="alarmVO">
+	
+		INSERT INTO alarm(
+		al_num,
+		user_num,
+		al_title, 
+		al_kind,
+		artist_num)
+		SELECT
+			alarm_seq.nextval,
+			#{user_num},
+			letter_title,
+			3,
+			artist_num
+		FROM(
+			SELECT user_num, letter_title,artist_num
+			FROM reply
+			ORDER BY post_date ASC
+			FETCH FIRST 2 ROWS ONLY
+		)
+		
+	</insert>
+	
+	<!-- 구독하고 있는 group의 갯 -->
+	<select id="selectRowCount" parameterType="long" resultType="integer">
+  		SELECT count(fan_artist) 
+		FROM fan 
+		WHERE user_num = #{user_num}
+		
+  		              
+  	</select>
+  	
+  	<select id ="serchArtisList" parameterType="long"
+  	                             >
+  	          
+  	SELECT fan_artist
+			FROM fan
+			WHERE user_num = #{user_num}
+  	                             
+  	</select>
+	<select id ="serchGroupNum" parameterType="long"
+  	                             resultType="long">
+		SELECT group_num
+			FROM agroup 
+			WHERE group_name = (
+	   	 SELECT group_name 
+	   	 FROM auser_detail 
+	    	WHERE user_num = #{user_num}) <!-- 여기서 usernum은 개인별 아티스트 번호 -->
+	</select>
+	
+	<insert id ="insertPerformAlarm" parameterType="alarmVO">
+	
+		INSERT INTO alarm(
+		al_num,
+		user_num,
+		al_title, 
+		al_kind,
+		artist_num)
+		SELECT 
+			alarm_seq.nextval,
+			#{user_num},
+			perf_title,
+			4,
+			#{artist_num}
+		FROM performance_detail WHERE artist_num = #{artist_num} AND ROWNUM = 1
+		
+	</insert>
+	
+
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="kr.spring.item.dao.ItemMapper">
+	<!-- 상품 등록 -->
+	<insert id="insertItem" parameterType="itemVO">
+		INSERT INTO shop_item(
+			item_num,
+			user_num,
+			filename,
+			item_name,
+			item_price,
+			item_description,
+			item_stock,
+			category)
+		VALUES (
+			shop_item_seq.nextval,
+			#{user_num},
+			#{filename},
+			#{item_name},
+			#{item_price},
+			#{item_description},
+			#{item_stock},
+			#{category})
+	</insert>
+	
+	<!-- sql태그와 include 태그를 이용해 sql문을 재사용 -->
+	<sql id="shopSearch">
+	<where>
+		<if test="keyword != null and keyword != ''">
+			<if test="keyfield == 1">
+				name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 2">
+				item_name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="user_num!=null">
+				and user_num = #{user_num}
+			</if>
+		</if>
+		<if test="keyword == null or keyword == ''">
+			<if test="user_num!=null">
+				user_num = #{user_num}
+			</if>
+		</if>
+	</where>
+	</sql>
+	
+	<sql id="shopOrder">
+		<if test="order == 1">
+			ORDER BY name DESC
+		</if>
+		<if test="order == 2">
+			ORDER BY item_name DESC
+		</if>
+	</sql>
+
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT
+			COUNT(*)
+		FROM shop_item JOIN agroup ON shop_item.user_num = agroup.group_num
+		<include refid="shopSearch"/>
+	</select>
+	
+	<select id="selectList" parameterType="map" resultType="itemVO">
+		SELECT
+			*
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			FROM (SELECT
+					item_num,
+					filename,
+					item_name,
+					item_regdate,
+					item_modifydate,
+					item_stock,
+					item_description,
+					item_price,
+					user_num
+				FROM shop_item
+				JOIN agroup ON shop_item.user_num = agroup.group_num
+				<include refid="shopSearch"/>
+				ORDER BY item_regdate desc)a)
+			<![CDATA[
+					WHERE rnum >= #{start} 
+					AND rnum <= #{end}
+					AND user_num = #{user_num}
+			]]>
+	</select>	
+	<select id="selecExceptPremium" parameterType="map" resultType="itemVO">
+		SELECT
+			*
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			FROM (SELECT
+					item_num,
+					filename,
+					item_name,
+					item_regdate,
+					item_modifydate,
+					item_stock,
+					item_description,
+					item_price,
+					user_num,
+					category
+				FROM shop_item
+				JOIN agroup ON shop_item.user_num = agroup.group_num
+				<include refid="shopSearch"/>
+				ORDER BY item_regdate desc)a)
+			<![CDATA[
+					WHERE rnum >= #{start} 
+					AND rnum <= #{end}
+					AND user_num = #{user_num}
+					AND category = 0
+			]]>
+	</select>	
+	
+	<update id="updateItem" parameterType="ItemVO">
+		UPDATE shop_item SET 
+				user_num = #{user_num},
+				filename = #{filename},
+				item_name = #{item_name},
+				item_price = #{item_price},
+				item_description = #{item_description},
+				item_stock = #{item_stock},
+				item_modifydate = SYSDATE,
+				category = #{category}
+		WHERE item_num = #{item_num}
+	</update>
+	
+	<select id="showListByGroup" resultType="itemVO">
+	    SELECT 
+		  * 
+		FROM(        
+		 SELECT 
+		  g.group_num,
+		  g.group_name,
+		  g.group_photo,
+		  i.item_num,
+		  i.item_name,
+		  i.item_price,
+		  i.item_description,
+		  i.item_stock,
+		  i.filename,
+		  i.user_num,
+		  i.item_regdate,
+		  b.group_cnt,
+		  ROW_NUMBER() OVER (PARTITION BY g.group_name ORDER BY i.item_regdate DESC) AS rnum 
+		 FROM agroup g 
+		 JOIN shop_item i on g.group_num=i.user_num
+		 JOIN (SELECT user_num, COUNT(*) group_cnt FROM shop_item GROUP BY user_num)b ON g.group_num=b.user_num
+		 )
+		 <![CDATA[
+		 WHERE rnum <= 4
+	    ]]>
+	</select>
+
+	<!-- 그룹명 읽기 -->
+	<select id="showListGroup" resultType="itemVO">
+		SELECT 
+		  * 
+		FROM(        
+		 SELECT 
+		  g.group_num,
+		  g.group_name,
+		  ROW_NUMBER() OVER (PARTITION BY g.group_name ORDER BY i.item_modifydate DESC) AS rnum 
+		 FROM agroup g 
+		 JOIN shop_item i on g.group_num=i.user_num
+		 )
+		 <![CDATA[
+		 WHERE rnum <= 1
+	    ]]>
+	</select>
+
+
+	<!-- 장바구니에 저장하기 -->
+	<insert id="insertCart" parameterType="cartVO">
+		INSERT INTO shop_cart(
+			cart_num,
+			item_num,
+			user_num,
+			reg_date,
+			order_quantity)
+		VALUES(
+			cart_num_seq.nextval,
+			#{item_num},
+			#{user_num},
+			sysdate,
+			#{order_quantity})
+	</insert>
+	
+	<!-- 장바구니 목록 가져오기 -->
+	<select id="selectCart" resultType="cartVO">
+		SELECT *
+		FROM shop_cart 
+		JOIN shop_item
+		USING (item_num)
+		WHERE shop_cart.user_num = #{user_num}
+	</select>
+
+
+	<update id="updateCartByItem_num" parameterType="cartVO">
+	    <![CDATA[
+	    UPDATE shop_cart
+	    	SET order_quantity = 
+	        	CASE
+	           	 WHEN (order_quantity + #{input_quantity}) > 3 THEN 3
+	           	 ELSE (order_quantity + #{input_quantity})
+	       	 END
+	    	WHERE item_num = #{item_num}
+	      	AND user_num = #{user_num};
+	  	  ]]>
+	</update>
+	<insert id="insertOrder" parameterType="orderVO">
+		INSERT INTO shop_order(
+			order_num,
+			item_num,
+			user_num,
+			item_quantity,
+			total_price,
+			order_date,
+			item_status,
+			order_notice,
+			name,
+			phone,
+			zipcode,
+			address1,
+			address2
+		)VALUES(
+			#{order_num},
+			#{item_num},
+			#{user_num},
+			#{item_quantity},
+			#{total_price},
+			sysdate,
+			1,
+			#{order_notice},
+			#{name},
+			#{phone},
+			#{zipcode},
+			#{address1},
+			#{address2}	
+		)
+	</insert>
+
+	<select id="getOrder" resultType="orderVO">
+		SELECT 
+		    o.ORDER_DATE,     
+		    o.NAME,           
+		    i.FILENAME,      
+		    i.ITEM_NAME,    
+		    o.ITEM_QUANTITY,  
+		    o.TOTAL_PRICE     
+		FROM 
+		    SHOP_ORDER o
+		JOIN 
+		    SHOP_ITEM i ON o.ITEM_NUM = i.ITEM_NUM
+		WHERE 
+		    o.USER_NUM = #{user_num}
+		ORDER BY 
+		    o.ORDER_DATE DESC
+	</select>
+	<select id="checkMembership" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+			FROM fan f
+			JOIN auser_detail d ON f.fan_artist = d.user_num
+			WHERE f.user_num = #{user_num}
+			AND d.group_name = #{group_name}
+	</select>
+	
+	
+</mapper>

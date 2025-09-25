@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.notice.dao.NoticeMapper">
+	<!-- 공지 보기 -->
+	<sql id="commuSearch">
+  			<if test="keyword != null and keyword != ''">
+  				<if test="keyfield == 1">
+  					WHERE notice_title LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 2">
+  					WHERE (name LIKE '%' || #{keyword} || '%' OR
+  					 group_name LIKE '%' || #{keyword} || '%')
+  				</if>
+  				<if test="keyfield == 3">
+  					WHERE notice_content LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 4">
+  					WHERE (notice_title LIKE '%' || #{keyword} || '%' OR
+  					 notice_content LIKE '%' || #{keyword} || '%')
+  				</if>
+  			</if>
+  	</sql>
+	<sql id="commuSearch2">
+  			<if test="keyword != null and keyword != ''">
+  				<if test="keyfield == 1">
+  					AND notice_title LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 2">
+  					AND (name LIKE '%' || #{keyword} || '%' OR
+  					 group_name LIKE '%' || #{keyword} || '%')
+  				</if>
+  				<if test="keyfield == 3">
+  					AND notice_content LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 4">
+  					AND (notice_title LIKE '%' || #{keyword} || '%' OR
+  					 notice_content LIKE '%' || #{keyword} || '%')
+  				</if>
+  			</if>
+  	</sql>
+  	
+	<select id="countNotice" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+  		FROM notice JOIN auser_detail USING(user_num)
+  		WHERE user_num in (select follow_num from follow where follower_num=#{user_num})
+  		<include refid="commuSearch2"/>
+	</select>
+	<select id="countMyNotice" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+  		FROM notice JOIN auser_detail USING(user_num)
+  		WHERE user_num=#{user_num}
+  		<include refid="commuSearch2"/>
+	</select>
+	
+	<select id="selectNotice" parameterType="map" resultType="NoticeVO">
+	    SELECT
+	        *
+	    FROM (
+	        SELECT a.*, rownum rnum
+	        FROM (
+	            SELECT
+	                notice_num,
+	                <![CDATA[
+	                REPLACE(REPLACE(notice_title, '<', '&lt;'), '>', '&gt;') AS notice_title,
+	                ]]>
+	                notice_content,
+	                notice_date,
+	                notice_update,
+	                group_name,
+	                name
+	            FROM notice n
+	            JOIN auser_detail ad ON n.user_num = ad.user_num
+	            WHERE n.user_num IN (
+	                SELECT follow_num
+	                FROM follow
+	                WHERE follower_num = #{user_num}
+	            )
+	            <include refid="commuSearch2"/>
+	            ORDER BY notice_num DESC
+	        ) a
+	    )
+	    <![CDATA[
+	    WHERE rnum >= #{start} AND rnum <= #{end}
+	    ]]>
+	</select>
+	<select id="selectMyNotice" parameterType="map" resultType="NoticeVO">
+	    SELECT
+	        *
+	    FROM (
+	        SELECT a.*, rownum rnum
+	        FROM (
+	            SELECT
+	                notice_num,
+	                <![CDATA[
+	                REPLACE(REPLACE(notice_title, '<', '&lt;'), '>', '&gt;') AS notice_title,
+	                ]]>
+	                notice_content,
+	                notice_date,
+	                notice_update,
+	                group_name
+	            FROM notice n
+	            JOIN auser_detail USING(user_num)
+	            WHERE user_num=#{user_num}
+	            <include refid="commuSearch2"/>
+	            ORDER BY notice_num DESC
+	        ) a
+	    )
+	    <![CDATA[
+	    WHERE rnum >= #{start} AND rnum <= #{end}
+	    ]]>
+	</select>
+	<select id="selectAllNotice" parameterType="map" resultType="NoticeVO">
+	    SELECT
+	        *
+	    FROM (
+	        SELECT a.*, rownum rnum
+	        FROM (
+	            SELECT
+	                notice_num,
+	                <![CDATA[
+	                REPLACE(REPLACE(notice_title, '<', '&lt;'), '>', '&gt;') AS notice_title,
+	                ]]>
+	                notice_content,
+	                notice_date,
+	                notice_update,
+	                group_name,
+	                name
+	            FROM notice n
+	            JOIN auser_detail ad ON n.user_num = ad.user_num
+	            <include refid="commuSearch"/>
+	            ORDER BY notice_num DESC
+	        ) a
+	    )
+	    <![CDATA[
+	    WHERE rnum >= #{start} AND rnum <= #{end}
+	    ]]>
+	</select>
+	
+	<!-- 공지 작성 -->
+	<insert id="insertNotice" parameterType="noticeVO">
+  		INSERT INTO notice(
+  			notice_num,
+  			notice_title,
+  			notice_content,
+  			notice_file,
+  			user_num,
+  			notice_date)
+  		VALUES (
+  			notice_seq.nextval,
+  			#{notice_title},
+  			#{notice_content},
+  			#{notice_file,jdbcType=VARCHAR},
+  			#{user_num},
+  			sysdate)
+  	</insert>
+  	
+  	<!-- 공지 수정 -->
+  	<update id="updateNotice" parameterType="noticeVO">
+  		UPDATE notice SET
+  			<if test="notice_file != null">
+  				notice_file=#{notice_file},
+  			</if>
+  			notice_title=#{notice_title},
+  			notice_content=#{notice_content},
+  			notice_update=SYSDATE
+  		WHERE notice_num=#{notice_num}
+  	</update>
+</mapper>

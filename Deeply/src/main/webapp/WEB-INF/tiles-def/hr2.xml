@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- 회원가입 -->
+    <definition name="hr2" extends="main">
+    	<put-attribute name="title" value="회원가입"/>
+    	<put-attribute name="css" value="/WEB-INF/views/member/memberCSS.jsp"/>                            
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberRegister.jsp"/>
+    </definition>
+    
+	<!-- 회원 마이페이지 -->
+    <definition name="follow" extends="main">
+    	<put-attribute name="title" value="팔로우리스트"/>
+    	<put-attribute name="css" value="/WEB-INF/views/follow/followCSS.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/follow/followView.jsp"/>
+    </definition>
+    <definition name="modifyInfo" extends="main">
+    	<put-attribute name="title" value="회원정보 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/modifyInfo.jsp"/>
+    </definition>
+    
+    <!-- 아티스트 마이페이지 -->
+	 <definition name="mypage" extends="main">
+    	<put-attribute name="title" value="마이페이지 수정"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/myPageCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/deeplyMypage/mypage.jsp"/>                         
+    </definition>
+     <definition name="modifyArtiInfo" extends="main">
+    	<put-attribute name="title" value="아티스트 정보 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/modifyArtiInfo.jsp"/>
+    </definition>
+    
+    <!-- 아티스트 멤버십 -->
+     <definition name="fan" extends="main">
+    	<put-attribute name="title" value="아티스트 팬"/>
+    	<put-attribute name="body" value="/WEB-INF/views/payment/artistFanJoin.jsp"/>
+    </definition>
+     <definition name="myArtiList" extends="main">
+    	<put-attribute name="title" value="유저 멤버십 구독 내역"/>
+    	<put-attribute name="body" value="/WEB-INF/views/payment/myArtistList.jsp"/>
+    </definition>
+    
+    <!-- 아티스트 커뮤니티 -->
+     <definition name="commuList" extends="main">
+    	<put-attribute name="title" value="전체 글 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuList.jsp"/>
+    </definition>
+     <definition name="commuFreeList" extends="main">
+    	<put-attribute name="title" value="전체게시판"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuFreeList.jsp"/>
+    </definition>
+     <definition name="commuFandomList" extends="main">
+    	<put-attribute name="title" value="팬덤게시판"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuFandomList.jsp"/>
+    </definition>
+     <definition name="commuMyList" extends="main">
+    	<put-attribute name="title" value="내 작성 글"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuMyList.jsp"/>
+    </definition>
+     <definition name="commuWrite" extends="main">
+    	<put-attribute name="title" value="글 등록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuWrite.jsp"/>
+    </definition>
+     <definition name="commuView" extends="main">
+    	<put-attribute name="title" value="상세정보"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuView.jsp"/>
+    </definition>
+     <definition name="commuModify" extends="main">
+    	<put-attribute name="title" value="글 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuModify.jsp"/>
+    </definition>
+    
+    <!-- 아티스트 공지 -->
+    <definition name="noticeList" extends="main">
+	   	<put-attribute name="title" value="공지사항"/>
+	   	<put-attribute name="body" value="/WEB-INF/views/notice/noticeList.jsp"/>
+  	</definition>
+    <definition name="noticeWrite" extends="main">
+	   	<put-attribute name="title" value="공지사항"/>
+	   	<put-attribute name="body" value="/WEB-INF/views/notice/noticeWrite.jsp"/>
+  	</definition>
+    <definition name="noticeModify" extends="main">
+	   	<put-attribute name="title" value="공지사항"/>
+	   	<put-attribute name="body" value="/WEB-INF/views/notice/noticeModify.jsp"/>
+  	</definition>
+</tiles-definitions>
+
+
+
+
+
+
+
+
+

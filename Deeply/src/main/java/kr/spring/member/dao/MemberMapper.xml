@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.member.dao.MemberMapper">
+
+    <!-- 회원 정보 저장 -->
+    <insert id="insertMember_detail" parameterType="kr.spring.member.vo.MemberVO">
+        INSERT INTO duser_detail(
+            user_num,
+            name,
+            passwd_hash,
+            email,
+            zipcode,
+            address1,
+            address2,
+            phone
+        )
+        VALUES (
+            #{user_num},
+            #{name},
+            #{passwd_hash},
+            #{email},
+            #{zipcode},
+            #{address1},
+            #{address2},
+            #{phone}
+        )
+    </insert>
+      	<select id="selectCheckMember" parameterType="string"
+  	                               resultType="memberVO">
+  		SELECT 
+  		  user_num,
+  		  id,
+  		  auth,
+  		  nick_name,
+  		  passwd_hash,
+  		  email,
+  		  user_bal
+  		FROM duser JOIN duser_detail
+  		USING (user_num)
+  		WHERE id= #{id}                       
+  	</select>
+    <!-- 회원 정보 업데이트 -->
+    <update id="updateMember" parameterType="kr.spring.member.vo.MemberVO">
+        UPDATE duser_detail
+        SET verified = #{Verified}
+        WHERE email = #{email}
+    </update>
+    
+        <select id="findByEmail" parameterType="String" resultType="kr.spring.member.vo.MemberVO">
+        SELECT * FROM duser_detail
+        WHERE email = #{email}
+    </select>
+<select id="selectIdAndNickName" parameterType="map" resultType="memberVO">
+    SELECT *
+    FROM duser
+    WHERE 1=1
+    <if test="id != null and id != ''">
+        AND id = #{id}
+    </if>
+    <if test="nick_name != null and nick_name != ''">
+        AND nick_name = #{nick_name}
+    </if>
+</select>
+  	<sql id="memberSearch">
+  		<where>
+  			<if test="keyword != null and keyword != ''">
+  				<if test="keyfield == 1">
+  					m.id LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 2">
+  					d.name LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 3">
+  					d.email LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 4">
+  					m.id LIKE '%' || #{keyword} || '%' OR
+  					d.name LIKE '%' || #{keyword} || '%' OR
+  					d.email LIKE '%' || #{keyword} || '%'
+  				</if>
+  			</if>
+  		</where>
+  	</sql>
+	<select id="selectRowCount" parameterType="map"
+  	                               resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM duser m LEFT OUTER JOIN duser_detail d
+  		ON m.user_num = d.user_num
+  		<include refid="memberSearch"/>
+  	</select>
+  	
+  	<!-- 전체/검색 목록 -->
+<select id="selectList" parameterType="map" resultType="memberVO">
+  SELECT *
+  FROM (
+    SELECT a.*, rownum rnum
+    FROM (
+      SELECT *
+      FROM duser m
+      LEFT OUTER JOIN duser_detail d ON m.user_num = d.user_num
+         <include refid="memberSearch"/> <!-- 이 부분에서 WHERE 조건이 추가된다면 위치를 확인 -->
+    ) a
+ 
+  )
+  <![CDATA[
+  WHERE rnum >= #{start} AND rnum <= #{end}
+  ]]>
+</select>
+
+
+
+
+
+<sql id="memberSearch2">
+  		<where>
+  			<if test="keyword != null and keyword != ''">
+  				<if test="keyfield == 1">
+  					m.id LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 2">
+  					d.name LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 3">
+  					d.email LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 4">
+  					m.id LIKE '%' || #{keyword} || '%' OR
+  					d.name LIKE '%' || #{keyword} || '%' OR
+  					d.email LIKE '%' || #{keyword} || '%'
+  				</if>
+  			</if>
+  		</where>
+  	</sql>
+
+
+
+
+
+<select id="selectRowCount2" parameterType="map"
+  	                               resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM auser m LEFT OUTER JOIN auser_detail d
+  		ON m.user_num = d.user_num
+  		<include refid="memberSearch"/>
+  	</select>
+  	
+  	<!-- 전체/검색 목록 -->
+<select id="selectList2" parameterType="map" resultType="artistVO">
+  SELECT *
+  FROM (
+    SELECT a.*, rownum rnum
+    FROM (
+      SELECT *
+      FROM auser m
+      LEFT OUTER JOIN auser_detail d ON m.user_num = d.user_num
+         <include refid="memberSearch2"/> <!-- 이 부분에서 WHERE 조건이 추가된다면 위치를 확인 -->
+    ) a
+ 
+  )
+  <![CDATA[
+  WHERE rnum >= #{start} AND rnum <= #{end}
+  ]]>
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+  	<update id="updateMember_detail" parameterType="memberVO">
+  		UPDATE duser_detail
+  		SET
+  		 phone=#{phone},
+  		 email=#{email},
+  		 zipcode=#{zipcode},
+  		 address1=#{address1},
+  		 address2=#{address2}
+
+  		WHERE user_num=#{user_num}
+  	</update>
+		<update id="updateMember_detail2" parameterType="artistVO">
+  		UPDATE auser_detail
+  		SET
+  	
+  		 email=#{email}
+  		WHERE user_num=#{user_num}
+  	</update>
+  	
+ 
+
+</mapper>

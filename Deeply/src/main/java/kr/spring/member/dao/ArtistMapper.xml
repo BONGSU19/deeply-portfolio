@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.member.dao.ArtistMapper">
+
+<insert id="insertMember_detail" parameterType="kr.spring.member.vo.ArtistVO">
+      INSERT INTO auser_detail(
+            user_num,
+            name,
+            passwd_hash,
+            email,
+            group_name,
+            intro,
+            debut_date
+        )
+        VALUES (
+            #{user_num},
+            #{name},
+            #{passwd_hash},
+            #{email},
+            #{group_name},
+            #{intro},
+            #{debut_date}
+        )
+    </insert>
+      	<select id="selectCheckMember" parameterType="string"
+  	                               resultType="ArtistVO">
+  		SELECT 
+  		  user_num,
+  		 id,
+  		  name,
+  		 group_name,
+  		  passwd_hash
+
+  		FROM auser JOIN auser_detail
+  		USING (user_num)
+  		WHERE id= #{id}                       
+  	</select>
+  	
+  		<select id="selectIdAndNickName" parameterType="map" resultType="artistVO">
+    SELECT
+        auser.*, 
+        auser_detail.group_name
+    FROM 
+        auser
+    LEFT JOIN 
+        auser_detail ON auser.user_num = auser_detail.user_num
+    WHERE 
+        1=1
+        <if test="id != null and id != ''">
+            AND auser.id = #{id}
+        </if>
+        <if test="group_name != null and group_name != ''">
+            AND auser_detail.group_name = #{group_name}
+        </if>
+</select>
+
+	<select id="selectGroupMembersForFollower" parameterType="map" resultType="artistVO">
+		SELECT * FROM agroup g 
+		JOIN auser_detail d ON g.group_name = d.group_name 
+		LEFT OUTER JOIN (SELECT follow_num,follower_num FROM follow WHERE follower_num=#{user_num}) c ON d.user_num=c.follow_num
+		LEFT OUTER JOIN (SELECT follow_num,COUNT(*) follow_cnt FROM follow GROUP BY follow_num) cn ON d.user_num=cn.follow_num
+		WHERE g.group_num=#{group_num}
+	</select>
+	<select id="selectGroupMembers" parameterType="long" resultType="artistVO">
+		SELECT * FROM agroup g 
+		JOIN auser_detail d ON g.group_name = d.group_name 
+		LEFT OUTER JOIN (SELECT follow_num,COUNT(*) follow_cnt FROM follow GROUP BY follow_num) cn ON d.user_num=cn.follow_num
+		WHERE g.group_num=#{group_num}
+	</select>
+   
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="memberLogin" extends="main">
+    	<put-attribute name="title" value="회원로그인"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>                            
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/member/memberLogin.jsp"/>
+    </definition>
+    
+    <definition name="memberRegister" extends="main">
+    	<put-attribute name="title" value="회원회원가입"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>                            
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/member/memberRegister.jsp"/>
+    </definition>
+    
+      <definition name="artistRegister" extends="main">
+    	<put-attribute name="title" value="아티스트 회원가입"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>                            
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/artistMember/artistRegister.jsp"/>
+    </definition>
+    
+     <definition name="findID" extends="main">
+    	<put-attribute name="title" value="아이디 찾기"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/member/findID.jsp"/>                         
+    </definition>
+    
+       <definition name="findPasswd" extends="main">
+    	<put-attribute name="title" value="비밀번호 찾기"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/member/findPasswd.jsp"/>                         
+    </definition>
+    
+ 
+       <definition name="resetPassword" extends="main">
+    	<put-attribute name="title" value="비밀번호 찾기"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/member/resetPassword.jsp"/>                         
+    </definition>
+    
+    <definition name="admin_main" extends="main">
+    	<put-attribute name="title" value="어드민 메인"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/admin/admin_main.jsp"/>                         
+    </definition>
+    
+    <definition name="admin_list" extends="main">
+    	<put-attribute name="title" value="어드민 맴버 리스트"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/admin/admin_list.jsp"/>                         
+    </definition>
+ 	 <definition name="admin_artist" extends="main">
+    	<put-attribute name="title" value="어드민 아티스르 리스트"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/admin/admin_artist.jsp"/>                         
+    </definition>   
+    
+    	 <definition name="admin_memberModify" extends="main">
+    	<put-attribute name="title" value="어드민 맴버 수정"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/admin/admin_memberModify.jsp"/>                         
+    </definition> 
+    
+       <definition name="myPage1" extends="main">
+    	<put-attribute name="title" value="마이페이지 수정"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/deeplyMypage/mypage1.jsp"/>                         
+    </definition>
+    
+     <definition name="payment" extends="main">
+    	<put-attribute name="title" value="결제창"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/payment/payment.jsp"/>                         
+    </definition>
+    
+
+	    <definition name="userBal" extends="main">
+    	<put-attribute name="title" value="충전"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/member/memberCSS.jsp"/>  
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/payment/userBal.jsp"/>                         
+    </definition>
+    
+    
+</tiles-definitions>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace ="kr.spring.chat.dao.ChatMapper">
+
+	<!--채팅방 만들기 -->
+	<insert id ="insertChatroom" parameterType="chatVO">
+	
+		INSERT INTO chatroom(
+		chat_num,
+		chat_name,
+		chat_status,
+		auser_num,
+		chat_time
+		) VALUES (
+		chatroom_seq.nextval,
+		#{chat_name},
+		1,
+		#{auser_num}
+		,current_timestamp)
+		
+	</insert>
+
+	<!-- 아티스트 정보-->
+	<insert id ="insertAuserInfo" parameterType="chatVO">
+	INSERT INTO achat(auser_num, auser_id) 
+	VALUES(#{auser_num},
+	#{auser_id})
+
+	</insert>
+	
+	<!-- 유저 정보 -->
+	<insert id ="insertDuserInfo" parameterType="chatVO">
+	INSERT INTO dchat(duser_num, duser_id) 
+	VALUES (#{duser_num},
+	#{duser_id})
+
+	</insert>
+	<!-- 아티스트 정보 중간테이블에 넣기 -->
+	<insert id ="insertAuserChat" parameterType="chatVO" >
+	INSERT INTO chat (chat_user_num, chat_id, chat_num) VALUES (#{auser_num},#{auser_id},#{chat_num})
+	</insert>
+	
+	<insert id ="insertDuserChat" parameterType="chatVO" >
+	INSERT INTO chat (chat_user_num, chat_id, chat_num) VALUES (#{duser_num},#{duser_id},#{chat_num})
+	</insert>
+	
+	
+	<!-- 메세지 주고받는 부분 -->
+	<!-- 
+  	<insert id="insertMsg" parameterType="chatMsgVO">
+		INSERT INTO chatmsg(
+			chatmsg_num,
+			chat_num,
+			chat_user_num,
+			chat_msg,
+			reply_status)
+		VALUES (
+			chatmsg_seq.nextval,
+			#{chat_num},
+			#{chat_user_num},
+			#{chat_msg},
+			1)  	
+  	</insert>
+  	
+  	<select id="getMessages" parameterType = "chatMsgVO">
+  	
+  	SELECT chat_msg FROM 
+  	chatmsg WEHRE chat_num=#{chat_num}
+  	ORDERBY chatmsg_num ASC
+  	
+  	</select>
+메세지 등록 -->
+
+
+
+</mapper>

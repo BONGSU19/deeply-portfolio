@@ -1,0 +1,1727 @@
+/* 
+===============================
+			  공통
+===============================
+ */
+ 
+
+/*그림자========================*/
+.shadow-effect{
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+
+/* 기본 태그 스타일 설정 ======================*/
+li {
+    list-style-type: none; /* 기본 데코레이션 제거 */
+}
+a {
+    text-decoration: none;
+    color: inherit;       
+}
+
+.border-bottom{
+	border:none;
+	border-bottom:2px solid white;
+}
+ 
+/* 폰트 설정 ======================*/
+.space-10vw{
+	height:10vw;
+}
+.space-20vw{
+	height:20vw;
+}
+.space-30vw{
+	height:30vw;
+}
+ 
+/* 폰트 설정 ======================*/
+.font-black{
+	color:black;
+}
+
+.font-white{
+	color:white;
+}
+
+.font-red{
+	color:red;
+}
+
+.bold-title{
+	font-weight:bold;
+}
+
+.font-0_8{
+	font-size:0.8vw;
+}
+.font-0_9{
+	font-size:0.9vw;
+}
+.font-1{
+	font-size:1vw;
+}
+.font-1_5{
+	font-size:1.5vw;
+}
+.font-2{
+	font-size:2vw;
+}
+.font-3{
+	font-size:3vw;
+}
+/* 구분선 ====================*/
+.hr-2{
+	height:0.1vw;
+}
+.border-black{
+	border:1px solid black;
+}
+.border-white{
+	border:1px solid white;
+}
+
+/* 공통 배경색 ====================*/
+.background-black{
+	background:black;
+}
+.background-white{
+	background:white;
+}
+.background-darkblue{
+	background:#0369A1;
+}
+/* 정렬 설정 ====================*/
+
+.margin-auto{
+	width:80%;
+	margin:0 auto;
+}
+
+.display-flex{
+	display:flex;	
+}
+
+.align-top{
+	display:flex;
+	align-items:flex-start;
+	justify-content:center;	
+}
+
+.align-center{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+.right-align{
+	display:flex;
+	align-items:flex-end;
+	justify-content:flex-end;
+}
+
+.align-left{
+	display:flex;
+	align-items:flex-start;
+	justify-content:flex-start;
+}
+
+.vertical-center{
+	display:flex;
+	align-items:center;
+}
+
+.right-1{
+	margin-right:1%;
+}
+
+.right-3{
+	margin-right:3%;
+}
+
+.left-1{
+	margin-left:1%;
+}
+
+.left-3{
+	margin-left:3%;
+}
+
+.left-5{
+	margin-left:5%;
+}
+
+.left-10{
+	margin-left:10%;
+}
+.left-13{
+	margin-left:13%;
+}
+.left-20{
+	margin-left:20%;
+}
+.left-30{
+	margin-left:30%;
+}
+.left-40{
+	margin-left:40%;
+}
+.left-50{
+	margin-left:50%;
+}
+.top-1{
+	margin-top:1%;
+}
+
+.top-2{
+	margin-top:2%;
+}
+
+.top-3{
+	margin-top:3%;
+}
+
+.top-5{
+	margin-top:5%;
+}
+
+.top-10{
+	margin-top:10%;
+}
+
+/* 크기 설정 ====================*/
+.width-5vw{
+	width:5vw;
+}
+.width-10vw{
+	width:10vw;
+}
+.width-15vw{
+	width:15vw;
+}
+.width-20vw{
+	width:20vw;
+}
+.width-30vw{
+	width:30vw;
+}
+.width-5{
+	width:5%;
+}
+.width-10{
+	width:10%;
+}
+.width-20{
+	width:20%;
+}
+.width-30{
+	width:30%;
+}
+.width-40{
+	width:40%;
+}
+.width-50{
+	width:50%;
+}
+.width-60{
+	width:60%;
+}
+.width-70{
+	width:70%;
+}
+.width-80{
+	width:80%;
+}
+.width-90{
+	width:90%;
+}
+.width-100{
+	width:100%;
+}
+
+.height-50{
+	height:50%;
+}
+
+.height-100{
+	height:100%;
+}
+
+.height-90{
+	height:90%;
+}
+
+.height-10{
+	height:10%;
+}
+
+.height-80{
+	height:80%;
+}
+
+.height-20{
+	height:20%;
+}
+
+.height-0_1{
+	height:0.1vw;
+}
+.height-0_2{
+	height:0.2vw;
+}
+.height-1{
+	height:1vw;
+}
+.height-2{
+	height:2vw;
+}
+.height-3{
+	height:3vw;
+}
+.height-5{
+	height:5vw;
+}
+.height-7{
+	height:7vw;
+}
+.height-10{
+	height:10vw;
+}
+/* 버튼 디자인 ====================*/
+.white-btn{
+ 	background:none;
+ 	border-radius:10px;
+}
+.letter-buttons{
+	background:white;
+	border:none;
+	border-radius:10px;
+	width:5vw;
+	height:1.6vw;
+	font-weight:bold;
+	font-size:0.5vw;
+	cursor:pointer;
+	position:relative;
+	z-index:3;
+}
+
+/* UI 표시 설정 ===================*/
+.display-none{
+	display:none;
+}
+.z-3{
+	position:relative;
+	z-index:3;
+}
+
+.cursor-pointer{
+	cursor:pointer;
+}
+
+/* 
+===============================
+		  아티스트 메인
+===============================
+ */
+
+ .main-artist{
+ 	width:100%;
+ 	height:100%;
+ }
+ 
+ .a-title{
+ 	height:10vw;
+ 	font-size:4vw;
+ }
+ 
+ .aList-container{
+ 	width:80%;
+ 	margin:5% auto;
+ 	display:flex;
+ 	flex-wrap:wrap;
+ 	gap:9.5vw;
+ }
+ 
+ .aList-items{
+
+ 	width:20vw;
+ 	height:18vw;
+ 	background:white;
+ 	overflow: hidden;
+ 	border-radius:10px;
+ }
+ 
+ .over-hidden{
+ 	overflow: hidden;
+ }
+ 
+ .alist-img{
+ 	object-fit:cover;
+ 	width:100%;
+ 	height:80%;
+ }
+ 
+ 
+ /* 
+===============================
+		  아티스트 상세
+===============================
+ */
+ 
+ .member-selection-container{
+
+	width:100%;
+	min-height:30vw;
+ 	position:absolute;
+ 	top:70%;
+ 	z-index:10;
+ 	display:none;
+ 	overflow:hidden;
+ 	background-image: url('/assets/images/deeply_background.png');
+ 	border-top:3px solid white;
+ 	border-bottom:3px solid white;
+ }
+ 
+ .member-selection-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 위 어두운 오버레이 */
+  z-index: 1; /* 오버레이가 배경 위에 표시되도록 */
+}
+
+.member-selection-container > * {
+  position: relative; /* 내부 콘텐츠를 오버레이 위에 표시 */
+  z-index: 2;
+}
+ 
+ 
+ .member-selection-container2{
+ 	background:grey;
+	width:100%;
+	min-height:30vw;
+ 	position:absolute;
+ 	top:70%;
+ 	z-index:10;
+ 	display:none;
+ 	background-image: url('/assets/images/deeply_background.png');
+ 	border-top:3px solid white;
+ 	border-bottom:3px solid white;
+ }
+ 
+  .member-selection-container2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 위 어두운 오버레이 */
+  z-index: 1; /* 오버레이가 배경 위에 표시되도록 */
+}
+
+.member-selection-container2 > * {
+  position: relative; /* 내부 콘텐츠를 오버레이 위에 표시 */
+  z-index: 2;
+}
+ 
+ .member-selection-header{
+ 	position:relative;
+ }
+ 
+ .member-selection-div{
+ 	width:80%;
+ 	margin:5% auto;
+ 	height:70%;
+ 	display: flex;
+    flex-wrap: wrap; 
+    gap: 2rem; 
+    justify-content: flex-start;
+ }
+ 
+ .member-selection{
+ 	border-radius:10px;
+ 	width:10vw;
+ 	height:10vw;
+ }
+ 
+ .member-selection img{
+ 	width:100%;
+ 	height:100%;
+ 	border-radius:10px;
+ }
+ 
+ .member-selection-close{
+ 	position:absolute;
+ 	right:4%;
+ 	top:50%;
+ 	cursor:pointer;
+ }
+ 
+ .artist-detail{
+ 	width:80%;
+ 	margin:5% auto;
+ }
+ 
+ 
+ .a-mainpic{
+ 	width:95%;
+ 	margin:0 auto;
+ 	height:40vw;
+ 	position:relative;
+ 	overflow: hidden;
+ }
+ 
+ .a-mainImg{
+ 	width:90%;
+ 	height:100%;
+ 	object-fit:cover;
+ 	object-position:top;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 90%, transparent);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+ }
+ 
+ .a-fandom{
+ 	margin-top:5%;
+ 	font-size:2vw;
+ }
+ 
+ .premium-hr{
+ 	width:40%;
+ }
+ 
+ .premium-btn{
+ 	height:3vw;
+ }
+ 
+ .artist-modify-btn{
+ 	width:10vw;
+ 	height:4vw;
+ 	border:2px solid white;
+ 	border-radius:10px;
+ 	background:none;
+ 	cursor:pointer;
+ 	margin-left:20%;
+ }
+ 
+ .a-desc{
+ 	margin-top:3%;
+ 	font-size:1vw;
+ 	height:10vw;
+ }
+ 
+ .detail-premium-container{
+ 	display:flex;
+ 	height:13vw;
+ }
+ 
+ .premium-item {
+ 	font-size:1vw;
+ 	width:7vw;
+ 	height:7vw;
+ 	margin:auto 2%;
+ 	font-weight:bold;
+ 	color:white;
+ 	background:none;
+ 	border-radius:10%;
+ 	border:1px solid white;
+ 	cursor:pointer;
+ }
+ 
+ .premium-item:hover{
+ 	border:2px solid #0369A1;
+ 	color:#0369A1;
+ }
+ 
+ .a-profile{
+ 	margin-top:5%;
+ 	height:10vw;
+ 	font-size:3vw;
+ }
+ 
+ .wrong-artist-div{
+ 	width:100%;
+ 	height:15vw;
+ 	border:2px solid white;
+ }
+ 
+ 
+ .member-list{
+ 	display: flex;
+    flex-wrap: wrap; /* 줄바꿈을 허용 */
+    gap: 2rem; /* 아이템 간 간격 */
+    justify-content: flex-start; /* 중앙 정렬 */
+ }
+ 
+ .member-container img{
+ 	width:13vw;
+ 	height:13vw;
+ 	border:1px solid black;
+ 	border-radius:10%;
+ }
+ 
+ .member-detail{
+ 	height:15vw;
+ 	margin-top:5%;
+ }
+ 
+ .member-detail ul{
+ 	margin-top:2%;
+ 	
+ }
+ 
+ .member-detail label{
+ 	width:8vw;
+ 	height:2vw;
+ 	display:inline-block;
+ 	font-weight:bold;
+ 	margin-top:1%;
+ }
+ 
+ .member-detail hr{
+ 	height:0.1vw;
+ 	background:white;
+ 	margin-top:3%;
+ }
+ 
+ .official-board-title{
+ 	border:2px solid white;
+ 	border-radius:20px;
+ 	height:3vw;
+ }
+ 
+ .official-board-title span{
+ 	height:100%;
+ }
+ 
+ .official-board-container{
+ 	margin:5% auto;
+ }
+ 
+ .artist-contents-container{
+ 	height:30vw;
+ 	width:80%;
+ 	margin:5% auto;
+ }
+ 
+ .artist-contents-title{
+ 	font-size:4vw;
+ }
+ 
+ .artist-contents-list{
+ 	height:70%;
+ }
+ 
+ .artist-contents-item{
+ 	width:15vw;
+ 	height:15vw;
+ 	margin:5% auto;
+ 	overflow:hidden;
+ 	border-radius:10px;
+ 	border:none;
+ 	
+ }
+ 
+ .artist-contents-item img{
+ 	width:100%; 
+ 	height:100%;
+ 	object-fit: cover;
+ }
+ 
+ .artist-contents-more{
+ 	height:3.5vw;
+ 	font-size:0.9vw;
+ 	margin-right:3%;
+ }
+ 
+ .member-info{
+ 	display:none;
+ }
+ .member-item{
+ 	cursor:pointer;
+ 	display:flex;
+ 	flex-direction:column;
+ 	align-items:center;
+ 	justify-content:center;
+ 	position:relative;
+ 	margin-top:4%;
+ }
+ 
+ .follow-cnt{
+	position:absolute;
+	top:-10%;
+	right:5%;
+	gap:1rem;
+
+ }
+ .membership-btn{
+ 	width:5vw;
+ 	height:2vw;
+ 	position:absolute;
+ 	bottom:-15%;
+ 	background:#0369A1;
+ 	border:none;
+ 	color:white;
+ 	border-radius:10px;
+ 	font-size:0.6vw;
+ 	font-weight:bold;
+ 	cursor:pointer;
+ }
+ 
+  .membership-btn:hover{
+  	background-color: #e0e0ff;
+    transform: scale(1.1);
+    color:black;
+  }
+ 
+  /* 
+===============================
+		  아티스트 수정
+===============================
+ */
+ .img-previewer{
+ 	width:90%;
+ 	height:100%;
+ 	object-fit:cover;
+ 	object-position:top;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 90%, transparent);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+ }
+ 
+ .amainpic-select{
+ 	position:absolute;
+ 	bottom:5%;
+ 	right:5%;
+ 	background:white;
+ 	border-radius:10px;
+ 	width:7vw;
+ 	height:2.5vw;
+ }
+ 
+ #group_photo{
+ 	display:none;
+ }
+ 
+ .modify-details label{
+ 	width:20vw;
+ 	height:5vw;
+ 	position:inline-block;
+ 	display:flex;
+ 	align-items:center;	
+ }
+ 
+ .modify-details input{
+ 	height:3vw;
+ 	width:30vw;
+ 	border:2px solid white;
+ 	background:none;
+ 	color:white;
+ 	font-size:1vw;
+ }
+ 
+ .modify-details textarea{
+ 	width: 55vw;
+    height:10vw;
+    resize: none;
+    overflow: hidden;
+    border:2px solid white;
+ 	background:none;
+ 	color:white;
+ 	font-size:1vw;
+ }
+ 
+ .modify-submit{
+ 	height:20vw;
+ 	width:100%;
+ }
+ 
+ .modify-submit-btn{
+ 	width:10vw;
+ 	height:3vw;
+ 	border-radius:5px;
+ 	background:white;
+ 	border:2px solid white;
+ 	font-weight:bold;
+ 	font-size:0.8vw;
+ 	cursor:pointer;
+ }
+ 
+ .modify-bottom-div{
+ 	position:relative;
+ 	height:10vw;
+ }
+ 
+ .modify-cancel-btn{
+ 	width:10vw;
+ 	height:3vw;
+ 	border-radius:5px;
+ 	background:white;
+ 	border:2px solid white;
+ 	font-weight:bold;
+ 	font-size:0.8vw;
+ 	position:absolute;
+ 	left:37%;
+ 	top:-115%;
+ 	cursor:pointer;
+ }
+ /* 
+===============================
+		  예매 메인
+===============================
+ */
+ 
+ .booking-artist-container{
+ 	height:8vw;
+ 	width:40%;
+ 	margin-top:5%;
+ 	font-size:3vw;
+ }
+ 
+ .booking-main{
+ 	width:80%;
+ 	margin:0 auto;
+ }
+ 
+ .booking-title{
+ 	font-size:2.2vw;
+ 	margin:5% 3%;
+ }
+ 
+ .booking-list-container{
+ 	height:50vw;
+ 	margin-top:16%;
+ }
+ 
+ .booking-date-container img{
+ 	border:1px sold black;
+ 	width:2.5vw;
+ 	height:1.6vw;
+ }
+ 
+ .booking-date{
+	width:20vw;
+ 	font-size:1.3vw;
+ 	font-weight:bold;
+ 	display:flex;
+ }
+ 
+ .dateSelect-btn{
+ 	width:11vw;
+ 	height:2vw;
+ 	border-radius:5px;
+ 	border:1px solid #0369A1;
+ }
+ 
+ .dateSelect-btn::placeholder{
+ 	color:black;
+ }
+ 
+ .booking-list{
+ 	height:40vw;
+ 	background:black;
+ 	display:flex;
+ 	flex-direction:column;
+ 	align-items:center;
+ }
+ 
+ .booking-category{
+ 	width:100%;
+ }
+ 
+ .booking-btn{
+ 	width:6vw;
+ 	height:2.5vw;
+ 	font-size:0.8vw;
+ 	cursor:pointer;
+ }
+ 
+ .booking-items{
+ 	width:95%;
+ 	display: flex;
+    flex-wrap: wrap; /* 줄바꿈을 허용 */
+    justify-content: flex-start; /* 중앙 정렬 */
+    gap:2rem;
+    margin-top:4%;
+    margin-left:2.5%;
+ }
+ 
+ .booking-item{
+ 	background:green;
+	height:45%;
+ 	flex: 0 0 calc(25% - 2rem); /* 5개 기준: 20% 너비에서 간격(gap) 제외 */
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    position: relative;
+    cursor:pointer;
+    border-radius:10px;
+    overflow:hidden;
+ }
+ 
+ .booking-item::before {
+    content: "";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0, 0, 0, 0.4); /* 어두운 오버레이 색상과 투명도 설정 */
+    z-index:2; /* 이미지 위에 오버레이가 오도록 설정 */
+}
+ 
+ .booking-item img{
+ 	object-fit: cover;
+	z-index:1;
+	width:100%;
+	height:100%;
+ }
+ 
+ .perf-title, .perf-date, .perf-status{
+ 	position:absolute;
+ 	z-index:2;
+ }
+ 
+ .perf-title{
+ 	top:20%;
+ 	font-size:1.5vw;
+ 	height:5vw;
+ 	width:100%;
+
+ }
+ 
+ .perf-date{
+ 	top:60%;
+ 	font-size:1.2vw;
+ 	height:5vw;
+ 	width:100%;
+ 	text-align:center;
+ }
+ 
+ .perf-status{
+ 	width:95%;
+ 	top:3%;
+ 	font-size:0.6vw;
+ }
+ 
+ .register-event-btn{
+ 	width:10vw;
+ 	height:3vw;
+ 	border:2px solid black;
+ 	background:none;
+ 	border-radius:10px;
+ 	cursor:pointer;
+ }
+ 
+ /*=========공연 정보 */
+ 
+ .event-detail{
+ 	display:none;
+ }
+ 
+ .event-desc{
+ 	width:100%;
+ 	border:1px solid #0369A1;
+ 	height:40vw;
+ }
+ 
+ .desc-div1{
+ 	margin:0 auto;
+ 	position:relative;
+ 	overflow: hidden;
+
+ }
+ 
+ .e-img {
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top;
+    opacity:0.4;
+    filter: brightness(0.8); /* 밝기 조절 (0~1) */
+    z-index: 3; /* 가장 뒤에 배치 */
+}
+ 
+ .event-title{
+ 	font-size:2vw;
+ 	margin-left:3%;
+ }
+ 
+ .e-title{
+ 	height:6vw;
+ 	font-size:2vw;
+ }
+ 
+ .e-info2 label, .e-info4 label{
+ 	font-weight:bold;
+ 	display:inline-block;
+ 	width:12vw;
+ }
+ 
+ .e-info3 hr{
+ 	width:5vw;
+ 	height:0.1vw;
+ 	margin-left: 0;
+    margin-right: auto;
+    background:#0369A1;
+ }
+ 
+ .e-info3{
+ 	height:20%;
+ }
+ 
+ .e-info4{
+ 	height:30%;
+ }
+ 
+ .e-submit{
+ 	height:3vw;
+ 	width:95%;
+ }
+ 
+ .e-submit button{
+ 	width:10vw;
+ 	height:3vw;
+ 	font-weight:bold;
+ 	font-size:1vw;
+ 	cursor:pointer;
+ }
+ 
+  /* 
+===============================
+		  예매 폼 작성 페이지
+===============================
+ */
+ 
+ .booking-info{
+ 	width:100%;
+ 	height:30vw;
+ 	position:relative;
+ }
+ 
+ .booking-info::before {
+    content: "";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0, 0, 0, 0.4); /* 어두운 오버레이 색상과 투명도 설정 */
+    z-index:2; /* 이미지 위에 오버레이가 오도록 설정 */
+}
+ 
+ .booking-info img{
+ 	object-fit: cover;
+	z-index:1;
+	width:100%;
+	height:100%;
+ }
+ 
+ .booking-div1, .booking-div2{
+ 	position:absolute;
+ 	width:80%;
+ 	z-index:2;
+ }
+ 
+ .booking-div1{
+ 	top:5%;
+ 	left:5%;
+ 	height:60%;
+ 	display:flex;
+ }
+ .booking-div2{
+ 	top:50%;
+ 	left:5%;
+ 	width:30%;
+ 	height:40%;
+ }
+ 
+ .booking-artist, .booking-place{
+ 	height:60%;
+ }
+ 
+  .booking-artist{
+  	width:20%;
+  }
+  
+  .booking-place{
+  	width:30%;
+  	margin-left:40%;
+  }
+  
+  #book1{
+  	background:#e2e3e4;
+  }
+  #book2{
+  	background:#c4c6c8;
+  }
+
+
+/*============ 좌석========================== */
+/* 전체 컨테이너 스타일 */
+
+.seat-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    border:1px solid black;
+    position:relative;
+    margin-top:5%;
+}
+
+
+
+/* 개별 섹터 스타일 */
+.sector1, .sector2, .sector3{
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    background:white;
+    display:flex;
+    flex-wrap:wrap;
+    height:20vw;
+    width:20%;
+    align-items:center;
+    justify-content:center;
+    gap:0.1vw;
+}
+
+
+.stage-div {
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    width:40%;
+    height:15vw;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* 좌석 스타일 */
+.seat-item {
+    background-color: white;
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 5px;
+    width:2vw;
+    height:3vw;
+    font-size:0.5vw;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.available-color{
+	background:white;
+	color:black;
+}
+
+.booked-color{
+	background: black;
+	color:white;
+}
+
+.vip-color{
+	background:#ffbf00;
+	color:black;
+}
+
+.available-color:hover, .vip-color:hover {
+    background-color: #e0e0ff;
+    transform: scale(1.1);
+}
+
+/* 섹터 배경 컬러 구분 */
+.sector1 {
+    justify-self: center;
+    width:25vw;
+    height:9vw;
+    gap:1vw;
+}
+
+.sector2 {
+	margin-right:5%;
+	width:30%;
+	flex-direction:column;
+}
+
+.sector3 {
+	margin-left:5%;
+	width:25%;
+    flex-direction:column;
+    gap:1.5rem;
+}
+
+
+
+.seat-type{
+	width:0.7vw;
+	height:1.2vw;
+	border:none;
+	border-radius:3px;
+	
+}
+.seat-desc{
+	width:5vw;
+	display:flex;
+	justify-content:flex-end;
+	font-size:0.6vw;
+}
+
+.seat-info-container{
+	position:absolute;
+	right:2%;
+	bottom:2%;
+	line-height:1.5vw;
+}
+
+/*============ 좌석 끝========================== */
+
+/*총 금액 css*/
+.receipt {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+/* 테이블 헤더 스타일 */
+.receipt thead tr {
+    background-color: #0369A1;
+    color: #fff;
+    font-weight: bold;
+}
+
+.receipt thead td {
+    padding: 12px;
+    text-align: center;
+    font-size: 1em;
+}
+
+/* 테이블 본문 스타일 */
+.receipt tbody tr {
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+
+.receipt tbody td {
+    padding: 10px;
+    font-size: 0.95em;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+}
+
+.receipt tbody .total-row td:last-child {
+    font-weight: bold;
+    color: #0369A1;
+    font-size: 1.1em;
+}
+/*총 금액 끝*/
+
+.book-form-style label{
+	display:inline-block;
+	width:7vw;
+	height:2vw;
+	font-weight:bold;
+}
+
+.book-form-style input{
+	border:none;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+
+.book-form-style .small-input{
+	width:3vw;
+	height:1.5vw;
+	border-radius:5px;
+}
+
+
+.book-form-style .medium-input{
+	width:10vw;
+	height:1.5vw;
+	border-radius:5px;
+}
+.book-form-style .big-input{
+	width:20vw;
+	height:3vw;
+	border-radius:5px;
+}
+
+.default-btn2{
+	width:7vw;
+	margin-left:2%;
+	height:2vw;
+	background:black;
+	color:white;
+	border:none;
+	font-weight:bold;
+	font-size:0.7vw;
+}
+
+
+
+.request-input{
+	width:20vw;
+	height:3vw;
+}
+
+#stype1{
+	background:#0EA5E9;
+}
+#stype2{
+	background:white;
+}
+#stype3{
+	background:black;
+}
+#stype4{
+	background:#ffbf00;
+}
+
+#book2{
+	display:none;
+}
+
+.book-submit-btn{
+	width:12vw;
+	height:3vw;
+	background:white;
+	font-weight:bold;
+	font-size:0.8vw;
+	border-radius:5px;
+	border:none;
+	cursor:pointer;
+}
+
+/*===========================
+		  이벤트 등록 페이지
+  ===========================*/
+
+.event-register-main{
+	margin:0 auto;
+	width:80%;
+}
+.register-date{
+	width:100%;
+	min-height:20vw;	
+}
+.register-detail{
+	width:100%;
+	min-height:20vw;	
+}
+.register-img{
+	width:100%;
+	min-height:20vw;
+}
+.register-booking{
+	width:100%;
+	min-height:20vw;
+}
+
+.dur-btn{
+	width:7vw;
+	height:3vw;
+	background:none;
+	border:2px solid black;
+	border-radius:10px;
+}
+
+#event_dur1{
+	background:#0369A1;
+}
+
+.event-end-date{
+	display:none;
+}
+
+.perf-desc-textarea{
+	height:15vw;
+	border:1px solid black;
+}
+
+.perf-register-previewImg{
+	width:40vw;
+	height:20vw;
+	margin-top:1%;
+	overflow:hidden;
+	
+}
+
+#preview_perfImg{
+	width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top;
+}
+
+.perf-img-btn{
+	width:6vw;
+	height:2vw;
+	background:none;
+	border:1px solid black;
+	border-radius:10px;
+	font-size:0.8vw;
+	font-weight:bold;
+}
+#event_upload{
+	display:none;	
+}
+/*===========================
+		  이벤트 관리 페이지
+  ===========================*/
+.artist-manage-main{
+	width:80%;
+	margin:0 auto;
+	min-height:100px;
+}
+
+.listManager-container{
+	border-top:3px solid black;
+	width:80%;
+	height:20vw;
+	margin:2% auto;
+}
+
+.manage-list-tr:nth-child(odd){
+	background:#0369A1;
+	color:white;
+}
+.manage-list-tr:nth-child(even){
+	background:#0C4A6E;
+	color:white;
+}
+
+.group-name-design {
+    font-weight: bold;
+    color:white;
+    font-size: clamp(12px, 1vw, 20px);
+    text-shadow: 0 0 7px #0369A1, 0 0 7px #0369A1;
+}
+
+/*===========================
+		  편지 페이지
+  ===========================*/
+  
+.letter-main{
+	width:100%;
+	margin:0 auto;
+}
+  
+.letter-div1{
+	width:100%;
+	display:flex;
+	justify-content:center;
+}
+
+.letter-div1 img{
+	width:20vw;
+	height:20vw;
+	margin-top:12%;
+	transform: rotate(30deg);
+}
+
+.letter-aname{
+	background:white;
+	height:20vw;
+	position:relative;
+	flex-direction:column;
+}
+
+.letter-aname hr{
+	height:0.5vw;
+}
+
+.aname-div{
+	height:40%;
+}
+
+.letter-btn-div{
+	height:5vw;
+	width:80%;
+	margin:0 auto;
+	position:relative;
+}
+
+.letter-body{
+	width:80%;
+	border:2px solid white;
+	height:40vw;
+	margin:0 auto;
+	position:relative;
+}
+
+.letter-btn{
+	margin-left:5%;
+	background:none;
+	width:8vw;
+	height:50%;
+	cursor:pointer;
+	border:none;
+	border-bottom:2px solid white;
+
+}
+
+.write-btn{
+	width:8vw;
+	height:60%;
+	border-radius:10px;
+	background:white;
+	border:none;
+	cursor:pointer;
+}
+
+.letter-form{
+	width:95%;
+	height:80%;
+	background:skyblue;
+	margin:2.5% auto;
+}
+
+.letter-box{
+	width:80%;
+	margin:5% auto;
+	overflow:hidden;
+	position:relative;
+}
+
+.page-box{
+	width:100%;
+	position:absolute;
+	bottom:0;
+}
+
+.letter-item{
+	margin-top:1%;
+	cursor:pointer;
+}
+
+.letter-background{
+	background:white;
+	opacity:100%;
+	width:100%;
+	height:30vw;
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+}
+
+.preview-img{
+	width:100%;
+	height:100%;
+ 	object-fit:cover;
+ 	object-position:center;
+ 	opacity:60%;
+ 	position:absolute;
+ 	z-index:1;
+}
+
+.letter-photo, .letter-title, .letter-content{
+	z-index:3;
+	position: relative;
+}
+
+.letter-title{
+	width:80%;
+}
+
+.upload-preview{
+	width:100%;
+	height:12vw;
+	border:1px solid black;
+}
+
+.ltitle-input, .lcontent-input{
+	background:none;
+	margin-top:3%;
+	border:2px solid #0369A1;
+	border-radius:5px;
+}
+
+.ltitle-input{
+	margin-left:4%;
+	width:30vw;
+	height:2.5vw;
+}
+
+.lcontent-input{
+	margin-left:3%;
+	width:60vw;
+	height:20vw;
+	resize: none;
+    overflow: hidden;
+}
+
+.letter-detail{
+	width:90%;
+	max-height:23vw;
+	font-size:0.9vw;
+	line-height:2vw;	
+}
+
+.no-reply{
+	width:100%;
+	min-height:30vw;
+}
+
+.reply-btn{
+	background:white;
+	font-weight:bold;
+	border:2px solid black;
+	border-radius:10px;
+	width:4vw;
+	height:2vw;
+	cursor:pointer;
+}
+
+.upload-files-div{
+	width:100%;
+	height:20vw;
+	border:2px solid white;
+	gap:2rem;
+}
+
+.upload-files-img{
+	width:15vw;
+	height:15vw;
+	border:1px solid white;
+}
+.upload-item-container{
+	position:relative;
+}
+.upload-item-container:first-of-type {
+    margin-left:5%;
+}
+.download-btn{
+	width:2vw;
+	height:2vw;
+	position:absolute;
+	top:2%;
+	right:2%;
+	background:none;
+	border:none;
+	cursor:pointer;
+}
+.download-btn img{
+	width:100%;
+	height:100%;
+}
+
+.letterPhoto-btn{
+	background:none;
+	font-weight:bold;
+	height:2vw;
+	border:none;
+	border-bottom:2px solid black;
+	position:absolute;
+	top:2vw;
+	right:5%;
+	z-index:10;
+	cursor:pointer;
+}
+
+.letterPhoto-btn2{
+	background:none;
+	font-weight:bold;
+	height:2vw;
+	border:none;
+	border-bottom:2px solid black;
+	position:absolute;
+	top:2vw;
+	right:15%;
+	z-index:10;
+	cursor:pointer;
+}
+
+.submit-div{
+	width:100%;
+	height:5vw;
+	margin-top:-4%;
+	margin-left:-10%;
+}
+
+.submit-btn{
+	width:8vw;
+	height:2.4vw;
+	background:white;
+	border:none;
+	border-radius:10px;
+	font-weight:bold;
+}
+
+.fan-font-design {
+    font-weight: bold;
+    color: white;
+    font-size: clamp(12px, 0.9vw, 20px);
+    text-shadow: 0 0 7px #7DD3FC, 0 0 7px #7DD3FC;
+}
+
+.fan-title-design{
+	font-weight:bold;
+	font-size:0.8vw;
+}
+
+
+/* 관리 페이지 */
+.booking-list-img{
+	width:60%;
+ 	height:100%;
+ 	object-fit:cover;
+ 	object-position:top;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 90%, transparent);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+	
+}
+
+.perf-date-div, .perf-btn-div, .perf-title-div{
+	position:absolute;
+	width:30%;
+	display:flex;
+	align-items:center;
+	right:0;
+}
+
+.perf-date-div{
+	top:50%;
+	height:2vw;
+	font-size:0.8vw;
+}
+
+.perf-btn-div{
+	top:80%;
+	height:2vw;
+	gap:3rem;
+
+}
+
+.perf-btn-div a{
+	display:inline-block;
+	width:3.5vw;
+	height:1.7vw;
+	text-align:center;
+	border-bottom:2px solid #0369A1;
+}
+
+.perf-title-div{
+	top:20%;
+	font-weight:bold;
+	font-size:1vw;
+}
+
+ 

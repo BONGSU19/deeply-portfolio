@@ -1,0 +1,126 @@
+@charset "UTF-8";
+/* 공통 글씨체
+--------------------------------*/
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Pretendard-Regular', sans-serif;
+}
+/* 전체 레이아웃
+----------------------------*/
+body{
+width:100%;
+padding:0;
+margin:0;
+}
+
+.main-div{
+width:80%;
+height:100%;
+margin:0 auto;
+}
+/* 페이지 기본 레이아웃
+----------------------------*/
+.page-main{
+	width:98%;
+	margin:0 auto;
+}
+.page-one{
+	width:600px;
+	margin:0 auto;
+}
+/* 공통 메시지
+----------------------------*/
+.result-display{
+	width:400px;
+	height:200px;
+	margin:50px auto;
+	border:1px solid #000;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.error-color{
+	color:#ff0000;
+}
+/* 공통 정렬
+----------------------------*/
+.align-center{
+	text-align:center;
+}
+.align-right{
+	text-align:right;
+}
+.align-left{
+	text-align:left;
+}
+/* 상단 메뉴
+----------------------------*/
+header{
+	width:100%;
+	height:70px;
+}
+.align-left img{
+	margin:18px;
+	margin-top:25px;
+	width:90px;
+	height:25px;
+}
+.header-left{
+	float:left;
+}
+.header-right{
+	float:right;
+
+
+}
+header a{
+	font-size:0.8vw;
+ text-decoration: none;
+	color:black;
+}
+.first-text{
+	float:right;
+	margin-top:28px;
+	margin-right:231px;
+}
+.second-text{
+	float:right;
+		margin-top:25px;
+
+}
+.second-text a{
+			margin-right:44px;
+}
+.first-text a{
+			margin-left:48px;
+}
+
+/* 메인
+--------------------------------*/
+
+/* 공통 등록, 수정 폼
+--------------------------------*/
+
+/* Admin, MY페이지 공통
+--------------------------------*/
+
+/* 프로필 공통
+--------------------------------*/
+
+/* 공통 목록
+--------------------------------*/
+
+/* 공통 테이블
+--------------------------------*/
+
+
+
+
+

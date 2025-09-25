@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.commu.dao.CommuMapper">  
+  	<!-- 전체게시판 글 작성 -->
+  	<insert id="insertCommu" parameterType="commuVO">
+  		INSERT INTO community(
+  			c_num,
+  			c_category,
+  			c_title,
+  			c_content,
+  			c_date,
+  			c_hit,
+  			c_file,
+  			user_num)
+  		VALUES (
+  			community_seq.nextval,
+  			#{c_category},
+  			#{c_title},
+  			#{c_content},
+  			sysdate,
+  			#{c_hit},
+  			#{c_file,jdbcType=VARCHAR},
+  			#{user_num})
+  	</insert>
+  	<!-- 팬덤게시판 글 작성 -->
+  	<insert id="insertFanCommu" parameterType="commuVO">
+  		INSERT INTO community(
+  			c_num,
+  			c_category,
+  			c_title,
+  			c_content,
+  			c_date,
+  			c_hit,
+  			c_file,
+  			user_num,
+  			c_fandom)
+  		VALUES (
+  			community_seq.nextval,
+  			#{c_category},
+  			#{c_title},
+  			#{c_content},
+  			sysdate,
+  			#{c_hit},
+  			#{c_file,jdbcType=VARCHAR},
+  			#{user_num},
+  			#{c_fandom})
+  	</insert>
+  	
+  	<!-- 
+  	 sql 태그와 include 태그를 이용해 SQL문을 재사용
+  	 -->
+  	<sql id="commuSearch">
+  		<where>
+  			<if test="c_category != null and c_category != ''">
+  				c_category = #{c_category}
+  			</if>
+  			<if test="keyword != null and keyword != ''">
+  				<if test="c_category != null and c_category != ''">
+  					AND
+  				</if>
+  				<if test="keyfield == 1">
+  					c_title LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 2">
+  					(id LIKE '%' || #{keyword} || '%' OR
+  					 nick_name LIKE '%' || #{keyword} || '%')
+  				</if>
+  				<if test="keyfield == 3">
+  					c_content LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 4">
+  					(c_title LIKE '%' || #{keyword} || '%' OR
+  					 c_content LIKE '%' || #{keyword} || '%')
+  				</if>
+  			</if>
+  		</where>
+  	</sql>
+
+  	<select id="selectRowCount" parameterType="map"
+  	                             resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM community JOIN duser USING(user_num)
+  		<include refid="commuSearch"/>                             
+  	</select>
+  	<select id="selectList" parameterType="map"
+  	                         resultType="commuVO">
+  		SELECT
+      *
+    FROM (SELECT
+            a.*,
+            rownum rnum
+          FROM (SELECT
+                  c_num,
+                  c_category,
+                  <![CDATA[
+	              REPLACE(REPLACE(c_title,'<','&lt;'),'>','&gt;') c_title,
+	              ]]>
+                  c_hit,
+                  c_file,
+                  c_date,
+                  user_num,
+                  id,
+                  nick_name,
+                  cre_cnt
+                FROM community
+                LEFT OUTER JOIN (SELECT COUNT(*) cre_cnt, c_num FROM community_reply GROUP BY c_num) USING(c_num)
+                JOIN duser USING(user_num)
+                <include refid="commuSearch"/>
+                ORDER BY c_num DESC  <!-- 이 위치에서 c_num 기준으로 오름차순 정렬 -->
+          ) a
+    )
+    <![CDATA[
+    WHERE rnum >= #{start} AND rnum <= #{end}
+    ]]>
+  	</select>
+  	
+  	<sql id="commuSearch2">
+  			<if test="keyword != null and keyword != ''">
+  				<if test="keyfield == 1">
+  					AND c_title LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 2">
+  					AND (id LIKE '%' || #{keyword} || '%' OR
+  					 nick_name LIKE '%' || #{keyword} || '%')
+  				</if>
+  				<if test="keyfield == 3">
+  					AND c_content LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 4">
+  					AND (c_title LIKE '%' || #{keyword} || '%' OR
+  					 c_content LIKE '%' || #{keyword} || '%')
+  				</if>
+  			</if>
+  	</sql>
+  	
+  	<select id="selectFreeRowCount" parameterType="map"
+  	                             resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM community JOIN duser USING(user_num)
+  		WHERE c_category = #{c_category}
+  		<include refid="commuSearch2"/>
+  			                    
+  	</select>
+  	<select id="selectFreeList" parameterType="map"
+  	                         resultType="commuVO">
+  		SELECT
+      *
+    FROM (SELECT
+            a.*,
+            rownum rnum
+          FROM (SELECT
+                  c_num,
+                  c_category,
+                  <![CDATA[
+	              REPLACE(REPLACE(c_title,'<','&lt;'),'>','&gt;') c_title,
+	              ]]>
+                  c_hit,
+                  c_file,
+                  c_date,
+                  user_num,
+                  id,
+                  nick_name,
+                  cre_cnt
+                FROM community
+                LEFT OUTER JOIN (SELECT COUNT(*) cre_cnt, c_num FROM community_reply GROUP BY c_num) USING(c_num)
+                JOIN duser USING(user_num)
+                WHERE c_category = #{c_category}
+  		        <include refid="commuSearch2"/>
+                ORDER BY c_num DESC  <!-- 이 위치에서 c_num 기준으로 오름차순 정렬 -->
+          ) a
+    )
+    <![CDATA[
+    where rnum >= #{start} AND rnum <= #{end}
+    ]]>
+  	</select>
+  	<select id="selectFandomRowCount" parameterType="map"
+  	                             resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM community JOIN duser USING(user_num)
+  		WHERE c_category = #{c_category}
+  		and c_fandom in (select follow_num from follow where follower_num=#{user_num})
+  		<include refid="commuSearch2"/>                 
+  	</select>
+  	<select id="selectFandomList" parameterType="map"
+  	                         resultType="commuVO">
+  		SELECT
+      *
+    FROM (SELECT
+            a.*,
+            rownum rnum
+          FROM (SELECT
+                  c_num,
+                  c_category,
+                  <![CDATA[
+	              REPLACE(REPLACE(c_title,'<','&lt;'),'>','&gt;') c_title,
+	              ]]>
+                  c_hit,
+                  c_file,
+                  c_date,
+                  user_num,
+                  id,
+                  nick_name,
+                  cre_cnt
+                FROM community
+                LEFT OUTER JOIN (SELECT COUNT(*) cre_cnt, c_num FROM community_reply GROUP BY c_num) USING(c_num)
+                JOIN duser USING(user_num)
+                WHERE c_category = #{c_category}
+                and c_fandom in (select follow_num from follow where follower_num=#{user_num})
+  		        <include refid="commuSearch2"/>
+                ORDER BY c_num DESC  <!-- 이 위치에서 c_num 기준으로 오름차순 정렬 -->
+          ) a
+    )
+    <![CDATA[
+    where rnum >= #{start} AND rnum <= #{end}
+    ]]>
+  	</select>
+  	<select id="selectMyRowCount" parameterType="map"
+  	                             resultType="integer">
+  		SELECT
+  		  COUNT(*)
+  		FROM community JOIN duser USING(user_num)
+  		where user_num=#{user_num}
+  		<if test="c_category != null and c_category != ''">
+  				and c_category = #{c_category}
+  			</if>
+  			<if test="keyword != null and keyword != ''">
+  				<if test="c_category != null and c_category != ''">
+  					AND
+  				</if>
+  				<if test="keyfield == 1">
+  					c_title LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 2">
+  					(id LIKE '%' || #{keyword} || '%' OR
+  					 nick_name LIKE '%' || #{keyword} || '%')
+  				</if>
+  				<if test="keyfield == 3">
+  					c_content LIKE '%' || #{keyword} || '%'
+  				</if>
+  				<if test="keyfield == 4">
+  					(c_title LIKE '%' || #{keyword} || '%' OR
+  					 c_content LIKE '%' || #{keyword} || '%')
+  				</if>
+  			</if>                      
+  	</select>
+  	<select id="selectMyList" parameterType="map"
+  	                         resultType="commuVO">
+  		SELECT
+      *
+    FROM (SELECT
+            a.*,
+            rownum rnum
+          FROM (SELECT
+                  c_num,
+                  c_category,
+                  <![CDATA[
+	              REPLACE(REPLACE(c_title,'<','&lt;'),'>','&gt;') c_title,
+	              ]]>
+                  c_hit,
+                  c_file,
+                  c_date,
+                  user_num,
+                  id,
+                  nick_name,
+                  cre_cnt
+                FROM community
+                LEFT OUTER JOIN (SELECT COUNT(*) cre_cnt, c_num FROM community_reply GROUP BY c_num) USING(c_num)
+                JOIN duser USING(user_num)
+                <include refid="commuSearch"/>
+                ORDER BY c_num DESC  <!-- 이 위치에서 c_num 기준으로 오름차순 정렬 -->
+          ) a
+    )
+    where user_num=#{user_num}
+    <![CDATA[
+    and rnum >= #{start} AND rnum <= #{end}
+    ]]>
+  	</select>
+  	
+  	<!-- 게시판 글 수정 -->
+  	<update id="updateCommu" parameterType="commuVO">
+  		UPDATE community SET
+  			<if test="c_file != null">
+  				c_file=#{c_file},
+  			</if>
+  			c_title=#{c_title},
+  			c_content=#{c_content},
+  			c_update=SYSDATE
+  		WHERE c_num=#{c_num}
+  	</update>
+  	
+  	<!-- ===================
+  			댓글
+  	==================== -->
+  	<!-- 댓글 등록 -->
+  	<insert id="insertReply" parameterType="commuReplyVO">
+		INSERT INTO community_reply(
+			cre_num,
+			cre_content,
+			cre_date,
+			user_num,
+			c_num)
+		VALUES (
+			community_reply_seq.nextval,
+			#{cre_content},
+			sysdate,
+			#{user_num},
+			#{c_num})
+  	</insert>
+  	<!-- 댓글 목록 -->
+  	<select id="selectListReply" parameterType="map"
+  	                         resultType="commuReplyVO">
+  		SELECT
+  			*
+  		FROM (SELECT
+  		        a.*,
+  		        rownum rnum
+  		      FROM (SELECT
+  		              cre_num,
+  		              <![CDATA[
+  		              REPLACE(REPLACE(cre_content,'<','&lt;'),'>','&gt;') cre_content,
+  		              ]]>
+  		              cre_date,
+  		              cre_update,
+  		              c_num,
+  		              user_num,
+  		              id,
+  		              nick_name
+  		            FROM community_reply
+  		            JOIN duser USING(user_num)
+  		            WHERE c_num = #{c_num}
+  		            ORDER BY cre_num DESC)a)
+  		<![CDATA[
+  		WHERE rnum >= #{start} AND rnum <= #{end}
+  		]]>            
+  	</select>
+  	
+  	<!-- ===================
+  			대댓글
+  	==================== -->
+  	<!-- 답글 등록 -->
+  	<insert id="insertResponse" 
+  	       parameterType="commuResponseVO">
+  		INSERT INTO community_response(
+  			pe_num,
+  			pe_content,
+  			pe_parent_num,
+  			pe_depth,
+  			cre_num,
+  			user_num)
+  		VALUES (
+  			response_seq.nextval,
+  			#{pe_content},
+  			#{pe_parent_num},
+  			#{pe_depth},
+  			#{cre_num},
+  			#{user_num})       
+  	</insert>
+  	<!-- 답글 목록 -->
+  	<select id="selectListResponse" parameterType="long"
+  	                         resultType="commuResponseVO">
+  		SELECT
+  			r.pe_num,
+  			r.pe_content,
+  			r.user_num,
+  			a.id,
+  			a.nick_name,
+  			r.pe_date,
+  			r.pe_update,
+  			r.cre_num,
+  			r.pe_depth,
+  			r.pe_parent_num,
+  			m.id parent_id,
+  			m.nick_name pnick_name
+  		FROM community_response r
+  		JOIN duser a ON r.user_num=a.user_num
+  		LEFT OUTER JOIN community_response s ON r.pe_parent_num=s.pe_num
+  		LEFT OUTER JOIN duser m ON s.user_num=m.user_num
+  		WHERE r.cre_num=#{cre_num}
+  		START WITH r.pe_depth=0 CONNECT BY PRIOR r.pe_num=r.pe_parent_num ORDER SIBLINGS BY r.pe_num DESC
+  	</select>
+  	<!-- 답글 삭제 -->
+  	<delete id="deleteResponse" parameterType="long">
+  		DELETE FROM community_response WHERE pe_num IN(
+  			SELECT pe_num
+  			FROM community_response
+  			START WITH pe_num = #{pe_num}
+  			CONNECT BY PRIOR pe_num = pe_parent_num)
+  	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+

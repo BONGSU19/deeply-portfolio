@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.payment.dao.FanMapper">
+	<!-- ========================
+			정보 불러오기
+	========================= -->
+	<select id="selectArtist" parameterType="Long" resultType="FanVO">
+		SELECT * FROM AUSER
+		JOIN auser_detail USING (user_num)
+		WHERE user_num=#{user_num}
+	</select>
+	
+	<!-- ========================
+			팬 구독하기/해제
+	========================= -->
+    <!-- 팬 가입 정보 삽입 -->
+    <insert id="joinFan">
+        INSERT INTO fan (fan_num, fan_start, fan_end, fan_artist, user_num)
+        VALUES (fan_seq.nextval, sysdate, sysdate + interval '1' month, #{fan_artist}, #{user_num})
+    </insert>
+
+	<!-- 내가 팬 맺은 아티스트 리스트 -->
+	<select id="getMyArtist" parameterType="map" resultType="FanVO">
+		SELECT *
+		FROM fan f
+		JOIN auser_detail a ON fan_artist = a.user_num
+		WHERE f.user_num = #{user_num}
+	</select>
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	 <definition name="itemMain" extends="main">
+    	<put-attribute name="title" value="상품 메인"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/item/itemCSS.jsp"/>                            
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/item/itemMain.jsp"/>
+    </definition>
+    <definition name="itemList" extends="main">
+    	<put-attribute name="title" value="상품 목록"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/item/itemCSS.jsp"/>                            
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/item/itemList.jsp"/>
+    </definition>
+    
+    <definition name="itemWrite" extends="main">
+    	<put-attribute name="title" value="상품 작성"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/item/itemCSS.jsp"/>                            
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/item/itemWrite.jsp"/>
+    </definition>
+
+    <definition name="itemView" extends="main">
+    	<put-attribute name="title" value="상품 디테일"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/item/itemCSS.jsp"/>                            
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/item/itemView.jsp"/>
+    </definition>
+    
+    <definition name="itemModify" extends="main">
+    	<put-attribute name="title" value="상품 등록 수정"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/item/itemCSS.jsp"/>                            
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/item/itemModify.jsp"/>
+    </definition>
+    
+    <definition name="itemOrder" extends="main">
+    	<put-attribute name="title" value="상품 구매 정보 배송지 정보"/>
+    	<put-attribute name="css"
+    	       value="/WEB-INF/views/item/itemCSS.jsp"/>                            
+    	<put-attribute name="body"
+    	  value="/WEB-INF/views/item/itemOrder.jsp"/>
+    </definition>
+
+	<definition name="itemCart" extends="main">
+		<put-attribute name="title" value="장바구니" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/item/itemCSS.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/item/itemCart.jsp" />
+	</definition>
+    
+    	<definition name="itemOrderList" extends="main">
+		<put-attribute name="title" value="상품 주문내역" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/item/itemCSS.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/item/itemOrderList.jsp" />
+	</definition>
+	<definition name="itemTotalOrder" extends="main">
+		<put-attribute name="title" value="상품 전체주문" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/item/itemCSS.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/item/itemTotalOrder.jsp" />
+	</definition>
+    
+</tiles-definitions>
+
+
+
+
+
+
+
+
+

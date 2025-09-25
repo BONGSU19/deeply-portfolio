@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <!-- 영상 업로드 페이지 -->
+    <definition name="videoUpload" extends="main">
+        <put-attribute name="title" value="영상 업로드" />
+        <put-attribute name="css" value="/WEB-INF/views/video/videoCSS.jsp" />
+        <put-attribute name="body" 
+                       value="/WEB-INF/views/video/video_upload.jsp" />
+    </definition>
+    <!-- 영상 목록 페이지 -->
+    <definition name="videoList" extends="main">
+        <put-attribute name="title" value="영상 목록" />
+        <put-attribute name="body" 
+                       value="/WEB-INF/views/video/video_list.jsp" />
+    </definition>
+	<!-- 아티스트 영상 페이지 -->
+	<definition name="groupVideoList" extends="main">
+	    <put-attribute name="title" value="그룹 영상 페이지" />
+	    <put-attribute name="css" value="/WEB-INF/views/video/videoCSS.jsp" />
+	    <put-attribute name="body" value="/WEB-INF/views/video/groupVideoList.jsp" />
+	</definition>
+	
+	<!-- video_page 정의 -->
+    <definition name="videoPage" extends="main">
+    	<put-attribute name="title" value="영상 페이지" />
+	    <put-attribute name="css" value="/WEB-INF/views/video/videoCSS.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/video/video_page.jsp" />
+    </definition>
+    <!-- faq 페이지 -->
+    <definition name="faq" extends="main">
+        <put-attribute name="title" value="자주 묻는 질문 (FAQ)" />
+        <put-attribute name="body" value="/WEB-INF/views/faq/faq.jsp" />
+    </definition>
+    
+    <definition name="addFaq" extends="main">
+        <put-attribute name="title" value="FAQ 질답 추가" />
+        <put-attribute name="body" value="/WEB-INF/views/faq/add_faq.jsp" />
+    </definition>
+    
+    <definition name="editFaq" extends="main">
+        <put-attribute name="title" value="FAQ 질답 수정" />
+        <put-attribute name="body" value="/WEB-INF/views/faq/edit_faq.jsp" />
+    </definition>
+    
+    <definition name="addCategory" extends="main">
+    	<put-attribute name="title" value="FAQ 카테고리 추가" />
+        <put-attribute name="body" value="/WEB-INF/views/faq/add_category.jsp" />
+    </definition>
+    
+     <definition name="manageCategories" extends="main">
+        <put-attribute name="title" value="FAQ 카테고리 관리" />
+        <put-attribute name="body" value="/WEB-INF/views/faq/manage_categories.jsp" />
+    </definition>
+    
+    <definition name="editCategory" extends="main">
+        <put-attribute name="title" value="FAQ 카테고리 수정" />
+        <put-attribute name="body" value="/WEB-INF/views/faq/edit_category.jsp" />
+    </definition>
+    
+    <definition name="inquiryForm" extends="main">
+    <put-attribute name="title" value="1대1 문의 작성" />
+    <put-attribute name="body" value="/WEB-INF/views/contact/inquiryForm.jsp" />
+    </definition>
+    
+    <definition name="adminInquiryList" extends="main">
+    <put-attribute name="title" value="관리자 - 1대1 문의 관리" />
+    <put-attribute name="body" value="/WEB-INF/views/contact/inquiryList.jsp" />
+    </definition>
+    
+    <definition name="adminViewInquiry" extends="main">
+    <put-attribute name="title" value="관리자 - 문의 상세 보기" />
+    <put-attribute name="body" value="/WEB-INF/views/contact/viewInquiry.jsp" />
+	</definition>
+    
+    <definition name="chatbotList" extends="main">
+        <put-attribute name="title" value="챗봇 목록" />
+        <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotList.jsp" />
+    </definition>
+</tiles-definitions>
